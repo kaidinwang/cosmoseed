@@ -1,0 +1,681 @@
+<prompt-simulator.html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 提示詞模擬器 · CosmoSeed AI</title>
+<style>
+:root {
+  --bg: #0a0e1a;
+  --bg2: #0f1525;
+  --card: #131929;
+  --card2: #182035;
+  --border: rgba(255,255,255,0.09);
+  --pink: #f472b6;
+  --pink-b: #e84393;
+  --pink-dim: rgba(244,114,182,0.14);
+  --pink-border: rgba(244,114,182,0.38);
+  --gold: #fbbf24;
+  --red: #f87171;
+  --red-dim: rgba(248,113,113,0.10);
+  --green: #4ade80;
+  --green-dim: rgba(74,222,128,0.09);
+  --text: #e8edf8;
+  --muted: rgba(220,228,248,0.55);
+  --max: 1240px;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system,'Noto Sans TC','PingFang TC',sans-serif;
+  font-size:17px; line-height:1.65;
+  overflow-x:hidden;
+}
+
+body::before {
+  content:'';
+  position:fixed; inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 5% 30%, rgba(232,67,147,0.10) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 60% at 95% 70%, rgba(139,92,246,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 0%, rgba(244,114,182,0.07) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 30% at 50% 100%, rgba(99,102,241,0.06) 0%, transparent 50%);
+  pointer-events:none; z-index:0;
+}
+
+/* ── HEADER ── */
+.site-header {
+  position:relative; z-index:10;
+  text-align:center;
+  padding:44px 24px 0;
+  border-bottom:1px solid var(--border);
+}
+.logo-wrap {
+  display:inline-flex; align-items:center; gap:14px;
+  margin-bottom:18px;
+}
+.logo-icon {
+  width:36px; height:36px; border-radius:10px;
+  background:linear-gradient(135deg,#e84393 0%,#f472b6 100%);
+  display:flex; align-items:center; justify-content:center;
+  box-shadow:0 0 24px rgba(232,67,147,0.45), 0 0 6px rgba(232,67,147,0.3);
+  flex-shrink:0;
+}
+.logo-icon svg { width:19px; height:19px; }
+.logo-text { font-size:clamp(22px,3.5vw,32px); font-weight:800; letter-spacing:-0.5px; }
+.logo-text span:first-child { color:#fff; }
+.logo-text span:last-child  { color:var(--pink-b); }
+
+.header-tagline {
+  font-size:clamp(20px,3vw,28px); font-weight:700; color:#fff;
+  margin-bottom:6px;
+}
+.header-sub { font-size:17px; color:var(--muted); margin-bottom:26px; }
+
+/* ── TAB NAV ── */
+.tab-nav { display:flex; justify-content:center; }
+.tab-btn {
+  padding:15px 34px; font-size:16px; font-weight:600;
+  color:var(--muted); background:none; border:none;
+  border-bottom:2px solid transparent;
+  cursor:pointer; letter-spacing:1px;
+  text-decoration:none; transition:all .2s;
+}
+.tab-btn.active  { color:var(--pink); border-bottom-color:var(--pink); }
+.tab-btn:hover:not(.active) { color:var(--text); }
+
+/* ── CONTAINER ── */
+.container {
+  max-width:var(--max); margin:0 auto;
+  padding:52px 32px 100px;
+  position:relative; z-index:5;
+}
+
+/* ── INTRO ── */
+.intro { text-align:center; margin-bottom:52px; }
+.badge {
+  display:inline-block;
+  background:var(--pink-dim); border:1px solid var(--pink-border);
+  color:var(--pink); font-size:13px; font-weight:700;
+  letter-spacing:2.5px; padding:5px 18px; border-radius:40px;
+  margin-bottom:14px;
+}
+.intro h2 { font-size:clamp(26px,4vw,36px); color:#fff; font-weight:800; margin-bottom:10px; }
+.intro p  { font-size:17px; color:var(--muted); max-width:560px; margin:0 auto; }
+
+/* ── LAYER CARD ── */
+.layer-card {
+  background:var(--card); border:1px solid var(--border);
+  border-radius:18px; margin-bottom:32px; overflow:hidden;
+}
+.layer-header {
+  display:flex; align-items:center; gap:18px;
+  padding:24px 36px; border-bottom:1px solid var(--border);
+  background:var(--card2);
+}
+.layer-num { font-size:44px; font-weight:800; color:var(--pink); opacity:.32; line-height:1; min-width:52px; }
+.layer-info h3 { font-size:21px; color:#fff; font-weight:700; }
+.layer-info p  { font-size:15px; color:var(--muted); margin-top:3px; }
+.layer-body { padding:30px 36px; }
+
+/* ── COMPARE GRID ── */
+.compare-grid { display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+@media(max-width:680px) { .compare-grid { grid-template-columns:1fr; } }
+
+.prompt-block { border-radius:14px; padding:24px 22px; border:1px solid var(--border); }
+.prompt-block.wrong { background:var(--red-dim);  border-color:rgba(248,113,113,0.22); }
+.prompt-block.right { background:var(--green-dim); border-color:rgba(74,222,128,0.22); }
+
+.block-label {
+  font-size:19px; font-weight:800; letter-spacing:.5px;
+  margin-bottom:16px; text-align:center; display:block;
+}
+.block-label.wrong { color:var(--red); }
+.block-label.right { color:var(--green); }
+
+.prompt-text {
+  font-size:15px; color:var(--text); line-height:1.78;
+  background:rgba(0,0,0,0.28); padding:14px 16px; border-radius:10px;
+  margin-bottom:14px; font-family:'Courier New',monospace;
+  min-height:80px; word-break:break-all;
+}
+.prompt-text .fill { color:var(--gold); font-style:italic; }
+
+/* ── BUTTON ROW ── */
+.btn-row { display:flex; gap:8px; margin-bottom:0; }
+
+/* SEND BUTTON */
+.send-btn {
+  flex:1; padding:12px 14px;
+  font-size:14px; font-weight:700; letter-spacing:.5px;
+  border:none; border-radius:10px; cursor:pointer;
+  font-family:inherit; transition:all .2s;
+}
+.send-btn.wrong-btn {
+  background:rgba(248,113,113,0.18); color:var(--red);
+  border:1px solid rgba(248,113,113,0.32);
+}
+.send-btn.right-btn {
+  background:rgba(74,222,128,0.16); color:var(--green);
+  border:1px solid rgba(74,222,128,0.32);
+}
+@keyframes btnBounce {
+  0%  { transform:translateY(0) scale(1); }
+  22% { transform:translateY(-9px) scale(1.04); }
+  44% { transform:translateY(-3px) scale(1.01); }
+  66% { transform:translateY(-6px) scale(1.02); }
+  82% { transform:translateY(-1px) scale(1.01); }
+  100%{ transform:translateY(0) scale(1); }
+}
+.send-btn:hover:not(:disabled) { filter:brightness(1.2); animation:btnBounce .55s ease; }
+.send-btn:disabled { opacity:.55; cursor:wait; }
+
+/* COPY PROMPT BUTTON — only on right (✅) blocks */
+.copy-prompt-btn {
+  padding:12px 16px;
+  font-size:13px; font-weight:700;
+  border:none; border-radius:10px; cursor:pointer;
+  font-family:inherit; transition:all .2s; white-space:nowrap;
+  background:rgba(251,191,36,0.14); color:var(--gold);
+  border:1px solid rgba(251,191,36,0.32);
+  flex-shrink:0;
+}
+.copy-prompt-btn:hover { background:rgba(251,191,36,0.24); filter:brightness(1.1); }
+.copy-prompt-btn.copied { background:rgba(74,222,128,0.15); color:var(--green); border-color:rgba(74,222,128,0.35); }
+
+/* ── AI RESPONSE ── */
+.response-area {
+  margin-top:14px; border-radius:12px; padding:18px 16px;
+  border:1px dashed var(--border); display:none;
+  animation:fadeIn .3s ease;
+}
+.response-area.show { display:block; }
+.response-area.wrong-resp { background:rgba(248,113,113,0.06); border-color:rgba(248,113,113,0.22); }
+.response-area.right-resp { background:rgba(74,222,128,0.05); border-color:rgba(74,222,128,0.22); }
+
+.resp-label {
+  font-size:12px; font-weight:700; letter-spacing:2px;
+  color:var(--muted); margin-bottom:10px;
+  display:flex; align-items:center; gap:6px;
+}
+.ai-dot { width:6px; height:6px; border-radius:50%; background:var(--muted); animation:pulse 1s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+.resp-text { font-size:15px; line-height:1.88; color:var(--text); white-space:pre-line; }
+.resp-verdict {
+  margin-top:14px; padding:11px 16px;
+  border-radius:8px; font-size:14px; font-weight:600;
+}
+.verdict-wrong { background:rgba(248,113,113,0.14); color:var(--red); }
+.verdict-right { background:rgba(74,222,128,0.14); color:var(--green); }
+
+.typing-cursor::after { content:'▍'; animation:blink .7s step-end infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+
+/* ── INTEGRATION ── */
+.integration {
+  background:linear-gradient(135deg, rgba(232,67,147,0.06) 0%, var(--card) 60%);
+  border:1px solid var(--border);
+  border-radius:18px; padding:36px 36px; margin-top:48px;
+}
+/* 星球icon + title 並行 */
+.integration-header {
+  display:flex; align-items:center; justify-content:center;
+  gap:16px; margin-bottom:10px;
+}
+.integration-header .planet { font-size:38px; line-height:1; }
+.integration-header h3 { font-size:24px; color:#fff; font-weight:800; }
+
+.integration > p { font-size:16px; color:var(--muted); margin-bottom:28px; text-align:center; }
+.page-links { display:flex; justify-content:center; gap:18px; flex-wrap:wrap; }
+.page-link {
+  display:flex; align-items:center; gap:14px;
+  background:var(--card2); border:1px solid var(--border);
+  border-radius:14px; padding:20px 28px;
+  text-decoration:none; color:var(--text);
+  transition:all .25s; min-width:220px;
+}
+.page-link:hover { border-color:var(--pink-border); background:var(--pink-dim); }
+.page-link .link-icon { font-size:28px; }
+.link-title { font-size:16px; font-weight:700; color:#fff; }
+.link-desc  { font-size:14px; color:var(--muted); margin-top:3px; }
+
+/* ── FOOTER ── */
+.site-footer {
+  text-align:center; padding:32px 24px; color:var(--muted); font-size:14px;
+  border-top:1px solid var(--border); position:relative; z-index:5;
+}
+.site-footer a { color:var(--pink); text-decoration:none; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="logo-wrap">
+    <div class="logo-icon">
+      <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17 3L9 17h7l-3 10L24 13h-7L17 3z" fill="white" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <div class="logo-text"><span>CosmoSeed</span><span> AI</span></div>
+  </div>
+  <div class="header-tagline">送錯提示詞，AI 就是一堆廢話</div>
+  <div class="header-sub">每一層漏斗，AI 都可以幫你——但你得先問對問題</div>
+  <nav class="tab-nav">
+    <a href="https://kaidinwang.github.io/cosmoseed/" class="tab-btn">📋 漏斗佈局檢核表</a>
+    <button class="tab-btn active" onclick="return false;">🤖 AI 提示詞模擬器</button>
+  </nav>
+</header>
+
+<div class="container">
+  <div class="intro">
+    <div class="badge">互動練習</div>
+    <h2>點擊「送出生成文案」<br>看看差距有多大</h2>
+    <p>同一個需求，精準問法 vs 模糊問法<br>AI 給你的答案天差地別。</p>
+  </div>
+
+  <!-- LAYER 01 -->
+  <div class="layer-card">
+    <div class="layer-header">
+      <div class="layer-num">01</div>
+      <div class="layer-info">
+        <h3>認知層 · 批量生成貼文腳本</h3>
+        <p>目標：讓 AI 一次產出一週的 IG 開場白，而不是廢話連篇</p>
+      </div>
+    </div>
+    <div class="layer-body">
+      <div class="compare-grid">
+        <div class="prompt-block wrong">
+          <span class="block-label wrong">❌ 大多數人這樣問</span>
+          <div class="prompt-text" id="pt-w1">幫我寫 IG 貼文</div>
+          <div class="btn-row">
+            <button class="send-btn wrong-btn" onclick="simulate('w1','r1',this)">▶ 送出生成文案</button>
+          </div>
+          <div class="response-area wrong-resp" id="r1">
+            <div class="resp-label"><span class="ai-dot"></span>AI 回覆</div>
+            <div class="resp-text" id="r1-text"></div>
+            <div class="resp-verdict verdict-wrong">⚠️ 沒有方向、沒有受眾、沒有語氣——這種內容你無法直接用</div>
+          </div>
+        </div>
+        <div class="prompt-block right">
+          <span class="block-label right">✅ 精準這樣問</span>
+          <div class="prompt-text" id="pt-ok1">我是[<span class="fill">品牌行銷顧問，14年品牌行銷經驗，現轉型個人 IP 創業</span>]。目標受眾是[<span class="fill">25–40歲，想用 AI 加速內容創作的個人 IP 創業者</span>]。幫我生成 5 則 IG 輪播貼文，主題：[<span class="fill">AI 行銷漏斗</span>]，語氣犀利不說教，每則 150–200 字，結構：開場一句話讓人停下來 → 點出痛點 → 給一個具體觀點或行動 → CTA。不要用說教語氣，不要用 hashtag。</div>
+          <div class="btn-row">
+            <button class="send-btn right-btn" onclick="simulate('w1ok','r1ok',this)">▶ 送出生成文案</button>
+            <button class="copy-prompt-btn" onclick="copyPrompt('我是品牌行銷顧問，14年品牌行銷經驗，現轉型個人 IP 創業。目標受眾是25–40歲，想用 AI 加速內容創作的個人 IP 創業者。幫我生成 5 則 IG 輪播貼文，主題：AI 行銷漏斗，語氣犀利不說教，每則 150–200 字，結構：開場一句話讓人停下來 → 點出痛點 → 給一個具體觀點或行動 → CTA。不要用說教語氣，不要用 hashtag。', this)">複製提示詞</button>
+          </div>
+          <div class="response-area right-resp" id="r1ok">
+            <div class="resp-label"><span class="ai-dot"></span>AI 回覆</div>
+            <div class="resp-text" id="r1ok-text"></div>
+            <div class="resp-verdict verdict-right">✅ 五則可以直接貼上用的開場白，每一句都有停滯感</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYER 02 -->
+  <div class="layer-card">
+    <div class="layer-header">
+      <div class="layer-num">02</div>
+      <div class="layer-info">
+        <h3>考慮層 · 分析留言找受眾痛點</h3>
+        <p>目標：讓 AI 替你讀完所有留言，幫你找出「下一篇該寫什麼」</p>
+      </div>
+    </div>
+    <div class="layer-body">
+      <div class="compare-grid">
+        <div class="prompt-block wrong">
+          <span class="block-label wrong">❌ 大多數人這樣問</span>
+          <div class="prompt-text">幫我分析我的受眾喜歡什麼</div>
+          <div class="btn-row">
+            <button class="send-btn wrong-btn" onclick="simulate('w2','r2',this)">▶ 送出生成文案</button>
+          </div>
+          <div class="response-area wrong-resp" id="r2">
+            <div class="resp-label"><span class="ai-dot"></span>AI 回覆</div>
+            <div class="resp-text" id="r2-text"></div>
+            <div class="resp-verdict verdict-wrong">⚠️ AI 不認識你的受眾，只能給你教科書通用答案</div>
+          </div>
+        </div>
+        <div class="prompt-block right">
+          <span class="block-label right">✅ 精準這樣問</span>
+          <div class="prompt-text">以下是我 IG 貼文「AI 行銷漏斗」的 20 則真實留言：[<span class="fill">「請問工具要怎麼選？」「我也想試但不知道從哪開始」「老師有推薦的工具嗎？」「做了好久感覺沒什麼效果」…（共 20 則）</span>]。請：① 歸納前 3 個高頻問題 ② 判斷受眾停在漏斗哪層 ③ 建議下一篇貼文的具體標題</div>
+          <div class="btn-row">
+            <button class="send-btn right-btn" onclick="simulate('w2ok','r2ok',this)">▶ 送出生成文案</button>
+            <button class="copy-prompt-btn" onclick="copyPrompt('以下是我 IG 貼文「AI 行銷漏斗」的 20 則真實留言：[貼上留言內容]。請：① 歸納前 3 個高頻問題 ② 判斷受眾停在漏斗哪層 ③ 建議下一篇貼文的具體標題', this)">複製提示詞</button>
+          </div>
+          <div class="response-area right-resp" id="r2ok">
+            <div class="resp-label"><span class="ai-dot"></span>AI 回覆</div>
+            <div class="resp-text" id="r2ok-text"></div>
+            <div class="resp-verdict verdict-right">✅ 有數據支撐的方向，直接指導下一篇內容</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYER 03 -->
+  <div class="layer-card">
+    <div class="layer-header">
+      <div class="layer-num">03</div>
+      <div class="layer-info">
+        <h3>決策層 · 整理客戶見證消除猶豫</h3>
+        <p>目標：把客戶的零散回饋，變成有說服力的見證文案</p>
+      </div>
+    </div>
+    <div class="layer-body">
+      <div class="compare-grid">
+        <div class="prompt-block wrong">
+          <span class="block-label wrong">❌ 大多數人這樣問</span>
+          <div class="prompt-text">幫我寫一段客戶見證文案</div>
+          <div class="btn-row">
+            <button class="send-btn wrong-btn" onclick="simulate('w3','r3',this)">▶ 送出生成文案</button>
+          </div>
+          <div class="response-area wrong-resp" id="r3">
+            <div class="resp-label"><span class="ai-dot"></span>AI 回覆</div>
+            <div class="resp-text" id="r3-text"></div>
+            <div class="resp-verdict verdict-wrong">⚠️ AI 編造的「見證」——沒有真實細節，任何人一眼看穿</div>
+          </div>
+        </div>
+        <div class="prompt-block right">
+          <span class="block-label right">✅ 精準這樣問</span>
+          <div class="prompt-text">以下是客戶的真實回饋：[<span class="fill">「跟著你學了三個月，IG 從 200 追蹤漲到 1,800，最重要的是我終於知道怎麼發文才有用，不再亂槍打鳥」</span>]。請把這段話改寫成：① 100 字以內的第三人稱見證 ② 語氣真實不誇大 ③ 突出前後對比（數字要保留），可以直接貼在銷售頁上使用。</div>
+          <div class="btn-row">
+            <button class="send-btn right-btn" onclick="simulate('w3ok','r3ok',this)">▶ 送出生成文案</button>
+            <button class="copy-prompt-btn" onclick="copyPrompt('以下是客戶的真實回饋：[貼上客戶原話]。請把這段話改寫成：① 100 字以內的第三人稱見證 ② 語氣真實不誇大 ③ 突出前後對比（數字要保留），可以直接貼在銷售頁上使用。', this)">複製提示詞</button>
+          </div>
+          <div class="response-area right-resp" id="r3ok">
+            <div class="resp-label"><span class="ai-dot"></span>AI 回覆</div>
+            <div class="resp-text" id="r3ok-text"></div>
+            <div class="resp-verdict verdict-right">✅ 有血有肉的真實見證，直接貼上銷售頁</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYER 04 -->
+  <div class="layer-card">
+    <div class="layer-header">
+      <div class="layer-num">04</div>
+      <div class="layer-info">
+        <h3>行動層 · 寫銷售頁 CTA 促成成交</h3>
+        <p>目標：讓猶豫的人在最後一刻點下去，而不是關掉頁面</p>
+      </div>
+    </div>
+    <div class="layer-body">
+      <div class="compare-grid">
+        <div class="prompt-block wrong">
+          <span class="block-label wrong">❌ 大多數人這樣問</span>
+          <div class="prompt-text">幫我寫銷售文案，我在賣線上課</div>
+          <div class="btn-row">
+            <button class="send-btn wrong-btn" onclick="simulate('w4','r4',this)">▶ 送出生成文案</button>
+          </div>
+          <div class="response-area wrong-resp" id="r4">
+            <div class="resp-label"><span class="ai-dot"></span>AI 回覆</div>
+            <div class="resp-text" id="r4-text"></div>
+            <div class="resp-verdict verdict-wrong">⚠️ 像所有人都在用的模板——毫無個性，無法打動人</div>
+          </div>
+        </div>
+        <div class="prompt-block right">
+          <span class="block-label right">✅ 精準這樣問</span>
+          <div class="prompt-text">我的課程是：[<span class="fill">「AI 行銷漏斗實戰課」，3 小時線上課程，NT$1,980</span>]。受眾核心痛點：[<span class="fill">「一直在產內容但沒有客人，不知道漏斗哪裡出了問題」</span>]。幫我寫一段 150 字的銷售頁 CTA 文案，結構：痛點確認 → 解法說明 → 立即行動的理由，語氣直接不花俏，結尾要有限時感。</div>
+          <div class="btn-row">
+            <button class="send-btn right-btn" onclick="simulate('w4ok','r4ok',this)">▶ 送出生成文案</button>
+            <button class="copy-prompt-btn" onclick="copyPrompt('我的課程是：[課程名稱、時長、價格]。受眾核心痛點：[描述痛點]。幫我寫一段 150 字的銷售頁 CTA 文案，結構：痛點確認 → 解法說明 → 立即行動的理由，語氣直接不花俏，結尾要有限時感。', this)">複製提示詞</button>
+          </div>
+          <div class="response-area right-resp" id="r4ok">
+            <div class="resp-label"><span class="ai-dot"></span>AI 回覆</div>
+            <div class="resp-text" id="r4ok-text"></div>
+            <div class="resp-verdict verdict-right">✅ 針對你的受眾、你的產品、你的語氣——可以直接用</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYER 05 -->
+  <div class="layer-card">
+    <div class="layer-header">
+      <div class="layer-num">05</div>
+      <div class="layer-info">
+        <h3>忠誠層 · 讓老客戶自動幫你介紹新客</h3>
+        <p>目標：給滿意的老客戶一個「好開口推薦你」的現成腳本</p>
+      </div>
+    </div>
+    <div class="layer-body">
+      <div class="compare-grid">
+        <div class="prompt-block wrong">
+          <span class="block-label wrong">❌ 大多數人這樣問</span>
+          <div class="prompt-text">幫我寫一段讓客人幫我介紹朋友的訊息</div>
+          <div class="btn-row">
+            <button class="send-btn wrong-btn" onclick="simulate('w5','r5',this)">▶ 送出生成文案</button>
+          </div>
+          <div class="response-area wrong-resp" id="r5">
+            <div class="resp-label"><span class="ai-dot"></span>AI 回覆</div>
+            <div class="resp-text" id="r5-text"></div>
+            <div class="resp-verdict verdict-wrong">⚠️ 像業務在推銷——真正的老客戶看到這種訊息只會尷尬</div>
+          </div>
+        </div>
+        <div class="prompt-block right">
+          <span class="block-label right">✅ 精準這樣問</span>
+          <div class="prompt-text">我的學員完課後普遍的感受是：[<span class="fill">「終於搞懂漏斗每層要做什麼，不再隨便發貼文了」</span>]。我想請這些滿意的學員介紹朋友來上我的「AI 行銷漏斗實戰課」。幫我寫一段 80 字以內的 LINE 推薦訊息模板，語氣像朋友聊天、不要像廣告，讓他們可以直接複製貼給朋友發送。</div>
+          <div class="btn-row">
+            <button class="send-btn right-btn" onclick="simulate('w5ok','r5ok',this)">▶ 送出生成文案</button>
+            <button class="copy-prompt-btn" onclick="copyPrompt('我的學員完課後普遍的感受是：[描述學員感受]。我想請這些滿意的學員介紹朋友來上我的[課程名稱]。幫我寫一段 80 字以內的 LINE 推薦訊息模板，語氣像朋友聊天、不要像廣告，讓他們可以直接複製貼給朋友發送。', this)">複製提示詞</button>
+          </div>
+          <div class="response-area right-resp" id="r5ok">
+            <div class="resp-label"><span class="ai-dot"></span>AI 回覆</div>
+            <div class="resp-text" id="r5ok-text"></div>
+            <div class="resp-verdict verdict-right">✅ 自然、不做作——老客戶真的願意傳給朋友</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTEGRATION -->
+  <div class="integration">
+    <div class="integration-header">
+      <span class="planet">🪐</span><h3>宇宙種子AI行銷工具箱</h3>
+    </div>
+    <p>兩種工具，幫你從「知道漏斗」到「真的會用 AI 佈建漏斗」</p>
+    <div class="page-links">
+      <a href="https://kaidinwang.github.io/cosmoseed/" class="page-link">
+        <span class="link-icon">📋</span>
+        <div>
+          <div class="link-title">漏斗佈局檢核表</div>
+          <div class="link-desc">診斷你的漏斗哪裡漏水</div>
+        </div>
+      </a>
+      <a href="#" class="page-link" style="border-color:var(--pink-border);">
+        <span class="link-icon">🤖</span>
+        <div>
+          <div class="link-title">AI 提示詞模擬器</div>
+          <div class="link-desc">學會每層的正確提問方式</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>讓種子開花，長成屬於你的無限宇宙</p>
+  <p style="margin-top:8px;">
+    <a href="https://instagram.com/din_din_wang">IG 追蹤 @din_din_wang</a>
+    &nbsp;·&nbsp;
+    <a href="https://lin.ee/ONzEi8u">官方 LINE@ 領取更多工具</a>
+  </p>
+  <p style="margin-top:8px;color:rgba(220,228,248,0.28);">@din_din_wang · 宇宙種子</p>
+</footer>
+
+<script>
+const R = {
+  w1:`以下是幾則 IG 貼文供您參考：
+
+1. 今天要分享一個很有用的技巧，希望大家喜歡！
+2. 最近學到很多東西，想跟大家分享我的心得。
+3. 大家好！今天來聊聊一個很重要的話題...
+4. 分享今天的小知識，記得收藏喔！
+5. 今天的貼文對你有幫助嗎？歡迎留言！`,
+
+  w1ok:`以下 5 則 IG 貼文：
+
+① 你一直在發貼文，卻沒有半個人詢問。
+不是你的內容不好——是你的漏斗只跑了第一層。
+行銷不是「發很多貼文」，是讓每一層的人都往下走。
+如果你只做認知，那你只是在幫別人暖身。
+→ 往右滑，看你的漏斗缺了哪幾層。
+
+② 大多數人用 AI 做行銷的方式是：
+叫它寫文章、寫貼文、寫文案。
+這沒有錯，但這只是漏斗的第一層。
+AI 真正厲害的地方，是幫你自動跑完後面四層。
+→ 下一頁告訴你，每層 AI 怎麼幫你。
+
+③ 你有沒有發現：發文流量很好，但詢問很少？
+這不是演算法的問題，是你把所有力氣都放在曝光，
+卻沒有建立讓人「從陌生到信任到買單」的路徑。
+這條路徑，叫做行銷漏斗。AI 可以幫你把它跑起來。
+→ 往右滑，看實際怎麼做。`,
+
+  w2:`您的受眾可能喜歡以下類型的內容：
+
+• 實用的學習資源和教學內容
+• 勵志和正能量的分享
+• 與日常生活和工作相關的話題
+• 案例分享與成功故事
+
+建議您多發布有教育性、有互動性的內容，
+並保持穩定的發文頻率。`,
+
+  w2ok:`🔍 高頻問題 TOP 3：
+① 「不知道從哪個 AI 工具開始」（出現 8 次）
+   → 受眾在認知層，找入口
+
+② 「有工具但不知道怎麼用在行銷」（出現 6 次）
+   → 在考慮層，需要具體方法
+
+③ 「做很久感覺沒效果，不知道哪裡出問題」（4次）
+   → 在決策層，需要診斷
+
+📍 受眾主要卡在：認知→考慮的轉換期
+
+💡 建議下一篇標題（擇一）：
+A：「5 個徵兆：你的 AI 行銷漏斗已經在漏水了」
+B：「我用哪 3 個免費 AI 工具，把內容產量翻三倍」`,
+
+  w3:`以下是一段客戶見證文案：
+
+「這個課程非常好！老師教學認真負責，
+內容豐富充實，我學到了很多東西。
+強烈推薦給所有想要提升自己的朋友！
+這是我上過最值得的課程之一！」`,
+
+  w3ok:`「跟著 Din 學行銷前，我的 IG 只有 200 人追蹤，
+發什麼都沒什麼回應。
+
+三個月後漲到 1,800 人——但真正的改變不是數字，
+是我終於知道每篇貼文的目的是什麼，
+不再隨便發了。」`,
+
+  w4:`以下是銷售文案：
+
+【限時優惠！立即報名！】
+想要提升自己的行銷技能嗎？
+我們的線上課程能幫助您達成目標！
+
+✅ 專業講師親自帶領
+✅ 豐富的課程內容
+✅ 學員一致好評
+
+現在報名享優惠價！名額有限，
+把握機會，立即行動，改變從今天開始！`,
+
+  w4ok:`你一直在發貼文，卻沒有人詢問——
+這不是你的內容不夠好，
+是你的漏斗只跑了第一層就斷掉了。
+
+「AI 行銷漏斗實戰課」3 小時，
+帶你把五層全部跑起來：
+從批量出內容、設定自動暖客，到關鍵字觸發成交，
+每一層都有提示詞模板，學完直接用。
+
+NT$1,980，本週報名限定價。
+下週開跑後恢復原價，不等人。
+→ 點連結看課程大綱`,
+
+  w5:`親愛的客戶您好，
+
+感謝您選擇我們的服務！
+如果您對我們的產品感到滿意，
+誠摯邀請您將我們推薦給身邊的朋友，
+讓更多人都能享受到我們的優質服務！
+
+感謝您一直以來的支持與信任！`,
+
+  w5ok:`「欸，我最近上了一個 AI 行銷的課，
+3 小時，學完真的搞懂漏斗怎麼跑了。
+
+你之前說在找這方面的東西嗎？
+傳給你連結你看看👇」`
+};
+
+function simulate(key, respId, btn) {
+  const text = R[key];
+  if (!text) return;
+  const respEl = document.getElementById(respId);
+  const textEl = document.getElementById(respId + '-text');
+
+  btn.disabled = true;
+  btn.textContent = '⏳ AI 生成中...';
+  respEl.classList.add('show');
+  textEl.textContent = '';
+  textEl.classList.add('typing-cursor');
+
+  let i = 0;
+  setTimeout(() => {
+    const iv = setInterval(() => {
+      if (i < text.length) { textEl.textContent += text[i++]; }
+      else {
+        clearInterval(iv);
+        textEl.classList.remove('typing-cursor');
+        btn.disabled = false;
+        btn.textContent = '↺ 再試一次';
+      }
+    }, 16);
+  }, 700);
+}
+
+function copyPrompt(text, btn) {
+  const done = () => {
+    btn.textContent = '✅ 已複製！';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '複製提示詞';
+      btn.classList.remove('copied');
+    }, 2200);
+  };
+  const fallback = () => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.cssText = 'position:fixed;opacity:0;top:0;left:0;width:1px;height:1px;';
+    document.body.appendChild(ta);
+    ta.focus(); ta.select();
+    try { document.execCommand('copy'); } catch(e) {}
+    document.body.removeChild(ta);
+    done();
+  };
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(text).then(done).catch(fallback);
+  } else {
+    fallback();
+  }
+}
+</script>
+</body>
+</html>
