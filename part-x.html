@@ -1,0 +1,327 @@
+<part-x.html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 個練習｜戰勝負面聲音 — 宇宙種子</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap');
+  :root{
+    --A:#7DD3FA;--A2:#BAE6FD;--Ag:rgba(125,211,250,0.14);
+    --card:rgba(8,20,55,0.72);
+    --t:#F0F8FF;--td:rgba(240,248,255,0.72);--tdm:rgba(240,248,255,0.42);
+    --serif:'Noto Serif TC',serif;--sans:'Noto Sans TC',sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    background:
+      radial-gradient(ellipse 100% 60% at 50% 0%, #0f2a5a 0%, transparent 55%),
+      radial-gradient(ellipse 80% 50% at 10% 50%, #091e42 0%, transparent 50%),
+      radial-gradient(ellipse 60% 40% at 90% 80%, #0d1f4a 0%, transparent 50%),
+      linear-gradient(175deg, #0a1628 0%, #060e20 40%, #091525 100%);
+    color:var(--t);font-family:var(--sans);min-height:100vh;overflow-x:hidden
+  }
+  /* 星點 */
+  .stars{position:fixed;inset:0;z-index:0;pointer-events:none}
+  .stars::before{content:'';position:absolute;inset:0;
+    background-image:
+      radial-gradient(circle,rgba(255,255,255,0.75) 1px,transparent 1px),
+      radial-gradient(circle,rgba(255,255,255,0.45) 1px,transparent 1px),
+      radial-gradient(circle,rgba(125,211,250,0.65) 1px,transparent 1px);
+    background-size:260px 260px,160px 160px,310px 310px;
+    background-position:0 0,80px 80px,35px 130px;opacity:.38}
+  .stars::after{content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse 70% 40% at 50% 20%,rgba(125,211,250,0.06),transparent 60%);
+    pointer-events:none}
+
+  /* ── 版面 ── */
+  .wrap{position:relative;z-index:1;max-width:560px;margin:0 auto;padding:52px 24px 68px}
+
+  /* ── Header ── */
+  .header{text-align:center;margin-bottom:36px;animation:up .8s ease both}
+  .btag{display:inline-block;
+    border:1px solid color-mix(in srgb,var(--A) 45%,transparent);
+    background:rgba(125,211,250,0.07);color:var(--A);
+    font-size:13px;font-weight:700;letter-spacing:3px;
+    padding:8px 22px;border-radius:50px;margin-bottom:24px}
+  .header h1{font-family:var(--serif);font-size:clamp(30px,8vw,44px);font-weight:900;
+    line-height:1.22;margin-bottom:14px;
+    background:linear-gradient(135deg,#FFF 35%,var(--A2));
+    -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+  .header p{font-size:16px;color:var(--td);line-height:1.75}
+  .divider{width:44px;height:3px;
+    background:linear-gradient(90deg,var(--A),transparent);
+    border-radius:2px;margin:18px auto 0}
+
+  /* ── 前言 ── */
+  .intro{
+    background:rgba(125,211,250,0.06);
+    border:1px solid rgba(125,211,250,0.14);
+    border-radius:16px;padding:18px 22px;margin-bottom:28px;
+    font-size:16px;color:var(--td);line-height:1.82;
+    animation:up .8s .05s ease both}
+  .intro strong{color:var(--A);font-weight:700}
+
+  /* ── 卡片 ── */
+  .tools{display:flex;flex-direction:column;gap:18px;margin-bottom:36px}
+  .card{background:var(--card);
+    border:1px solid rgba(125,211,250,0.15);
+    border-radius:22px;padding:28px 26px 24px;
+    backdrop-filter:blur(14px);
+    position:relative;overflow:hidden;
+    animation:up .8s ease both;
+    transition:transform .25s,border-color .25s,box-shadow .25s}
+  .card:hover{transform:translateY(-3px);
+    border-color:rgba(125,211,250,0.38);
+    box-shadow:0 14px 40px rgba(125,211,250,0.10)}
+  .card:nth-child(1){animation-delay:.10s}.card:nth-child(2){animation-delay:.16s}
+  .card:nth-child(3){animation-delay:.22s}.card:nth-child(4){animation-delay:.28s}
+  .card:nth-child(5){animation-delay:.34s}
+  .card::before{content:'';position:absolute;top:-28px;right:-28px;
+    width:90px;height:90px;
+    background:radial-gradient(circle,var(--Ag),transparent 70%);pointer-events:none}
+
+  /* Card header */
+  .chead{display:flex;align-items:center;gap:15px;margin-bottom:17px}
+  .nbadge{width:44px;height:44px;border-radius:50%;
+    border:2px solid var(--A);color:var(--A);
+    display:flex;align-items:center;justify-content:center;
+    font-size:18px;font-weight:700;flex-shrink:0;
+    background:rgba(125,211,250,0.08)}
+  .cname{font-family:var(--serif);font-size:23px;font-weight:700;line-height:1.2}
+  .cen{font-size:11px;font-weight:700;color:var(--A);letter-spacing:2px;margin-top:3px}
+
+  /* Action */
+  .action{background:rgba(125,211,250,0.07);
+    border-left:3px solid var(--A);border-radius:0 12px 12px 0;
+    padding:13px 16px;margin-bottom:15px}
+  .alabel{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--A);margin-bottom:4px}
+  .atext{font-size:16px;font-weight:700;color:var(--t);line-height:1.6}
+
+  /* Desc */
+  .desc{font-size:15px;color:var(--td);line-height:1.82;margin-bottom:15px}
+
+  /* Example */
+  .eg{border:1px dashed rgba(125,211,250,0.24);border-radius:12px;padding:13px 16px}
+  .elabel{font-size:11px;font-weight:700;color:var(--A);letter-spacing:2px;margin-bottom:9px}
+  .eitems{display:flex;flex-direction:column;gap:7px}
+  .eitem{display:flex;align-items:flex-start;gap:8px;
+    font-size:14.5px;color:var(--td);line-height:1.6}
+  .eitem::before{content:'›';color:var(--A);font-size:17px;flex-shrink:0;margin-top:-1px}
+
+  /* PUH */
+  .puh{display:flex;gap:10px;margin-bottom:15px}
+  .pi{flex:1;background:rgba(125,211,250,0.08);
+    border:1px solid rgba(125,211,250,0.20);
+    border-radius:14px;padding:14px 8px;text-align:center}
+  .pl{font-family:var(--serif);font-size:30px;font-weight:900;color:var(--A);line-height:1}
+  .pw{font-size:10px;color:var(--tdm);margin-top:5px;letter-spacing:1px}
+  .pz{font-size:13px;color:var(--td);margin-top:4px;font-weight:700}
+
+  /* ── 金句 ── */
+  .qbox{border:1px solid rgba(125,211,250,0.20);
+    background:rgba(125,211,250,0.05);
+    border-radius:18px;padding:28px 24px;
+    text-align:center;margin-bottom:36px;
+    animation:up .8s .42s ease both}
+  .qm{font-family:var(--serif);font-size:48px;color:var(--A);line-height:.8;margin-bottom:12px;opacity:.75}
+  .qt{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--t);line-height:1.78}
+  .qs{font-size:13px;color:var(--tdm);margin-top:12px}
+
+  /* ── 社群 ── */
+  .social{margin-bottom:36px;animation:up .8s .48s ease both}
+  .stitle{font-family:var(--serif);font-size:20px;font-weight:700;
+    text-align:center;color:var(--t);margin-bottom:7px}
+  .ssub{text-align:center;font-size:14.5px;color:var(--td);
+    margin-bottom:20px;line-height:1.7}
+  .scards{display:flex;gap:12px}
+  .sc{flex:1;border-radius:18px;padding:20px 16px;text-align:center;
+    text-decoration:none;display:block;
+    transition:transform .2s,box-shadow .2s}
+  .sc:hover{transform:translateY(-3px)}
+  .sc.ig{background:linear-gradient(135deg,rgba(131,58,180,.24),rgba(253,29,29,.20),rgba(252,176,69,.20));
+    border:1px solid rgba(200,100,180,.30)}
+  .sc.ig:hover{box-shadow:0 8px 26px rgba(180,80,160,.18)}
+  .sc.ln{background:rgba(6,199,85,.11);border:1px solid rgba(6,199,85,.30)}
+  .sc.ln:hover{box-shadow:0 8px 26px rgba(6,199,85,.15)}
+  .sico{font-size:30px;margin-bottom:8px;display:block}
+  .spl{font-size:11px;font-weight:700;letter-spacing:2px;color:var(--tdm);margin-bottom:4px}
+  .shn{font-size:15px;font-weight:700;color:var(--t);margin-bottom:8px}
+  .sact{display:inline-block;font-size:12px;font-weight:700;
+    letter-spacing:1px;padding:6px 16px;border-radius:50px}
+  .ig .sact{background:rgba(200,100,180,.17);color:#F0ABE0;
+    border:1px solid rgba(200,100,180,.34)}
+  .ln .sact{background:rgba(6,199,85,.13);color:#06C755;
+    border:1px solid rgba(6,199,85,.34)}
+
+  /* ── Footer ── */
+  .footer{text-align:center;animation:up .8s .54s ease both}
+  .fbrand{font-family:var(--serif);font-size:20px;font-weight:700;
+    color:var(--A);margin-bottom:5px;letter-spacing:1px}
+  .fhandle{font-size:14px;color:var(--tdm);margin-bottom:16px}
+  .fline{width:30px;height:1px;background:var(--A);opacity:.30;margin:14px auto}
+  .fslogan{font-size:12.5px;color:var(--tdm);line-height:1.9;
+    max-width:280px;margin:0 auto}
+
+  @keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+  @media(max-width:400px){
+    .wrap{padding:36px 16px 52px}
+    .card{padding:22px 18px 20px}
+    .puh{gap:7px}
+  }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="btag">宇宙種子 · 工具卡</div>
+    <h1>5 個練習<br>戰勝腦海中的<br>負面聲音</h1>
+    <p>精神科醫師 Phil Stutz 的 40 年執業智慧<br>《從低谷突破》核心工具，今天就能用</p>
+    <div class="divider"></div>
+  </div>
+
+  <!-- 前言 -->
+  <div class="intro">
+    你腦子裡那個說「你不夠好」「現在開始太晚了」的聲音，Phil Stutz 把它叫做 <strong>Part X</strong>。它熟悉你所有的弱點，知道什麼時候出聲最有效。你永遠殺不掉它，但你可以學會每次打亂它的節奏。這 5 個工具就是為了這件事設計的。
+  </div>
+
+  <div class="tools">
+
+    <!-- 1 感之流 -->
+    <div class="card">
+      <div class="chead"><div class="nbadge">1</div><div><div class="cname">感之流</div><div class="cen">GRATEFUL FLOW</div></div></div>
+      <div class="action">
+        <div class="alabel">怎麼做</div>
+        <div class="atext">閉眼深呼吸，說出此刻 3 件感謝的小事。越具體越好，大約 30 秒。</div>
+      </div>
+      <div class="desc">不要說「感謝一切」這種空泛的詞句，要說此刻真實的小事細節。這個動作讓大腦從負面迴圈強制切換，是打斷 Part X 最快的方法。當你主動選擇感謝的對象，你就不再是那個聲音的被動聽眾。</div>
+      <div class="eg">
+        <div class="elabel">實際例子</div>
+        <div class="eitems">
+          <div class="eitem">「剛才那杯手沖咖啡入口的瞬間，那個香氣讓我整個放鬆下來」</div>
+          <div class="eitem">「今天早上客戶回我訊息說『謝謝你上次給的建議』，我看到當下心情真的變好了」</div>
+          <div class="eitem">「下午坐在窗邊工作，陽光斜射進來，感覺很安心，就這樣，沒有別的」</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 珍珠串 -->
+    <div class="card">
+      <div class="chead"><div class="nbadge">2</div><div><div class="cname">珍珠串</div><div class="cen">STRING OF PEARLS</div></div></div>
+      <div class="action">
+        <div class="alabel">怎麼做</div>
+        <div class="atext">完成一件事，就在心裡（或紙上）放一顆珍珠。規則只有一個：每顆等值，不管大小。</div>
+      </div>
+      <div class="desc">大多數人卡住，是因為一直在打磨那顆珍珠，質疑它夠不夠大。Stutz 說：行動一旦完成就是一顆珍珠，等值，不用比較。先放上去，再串下一顆。進度是看得見的，這讓 Part X 沒有說話的空間。</div>
+      <div class="eg">
+        <div class="elabel">等值的珍珠</div>
+        <div class="eitems">
+          <div class="eitem">「終於把那封拖了三天的客戶信回完了」= 一顆</div>
+          <div class="eitem">「把 IG 限動發出去，哪怕只是一張文字圖」= 一顆</div>
+          <div class="eitem">「把桌面清乾淨，讓自己能坐下來開始工作」= 一顆</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 寫下來對照 -->
+    <div class="card">
+      <div class="chead"><div class="nbadge">3</div><div><div class="cname">寫下來對照</div><div class="cen">RECORD & COMPARE</div></div></div>
+      <div class="action">
+        <div class="alabel">怎麼做</div>
+        <div class="atext">把 Part X 說的預言完整寫下來，加上今天的日期，幾週後回來對照現實。</div>
+      </div>
+      <div class="desc">Phil Stutz 自己做過這個練習。他記錄「一定沒有新客戶來」，幾週後對照：客戶比平時還多。這個練習讓你用數據打臉大腦。當你看到那個聲音一次次說錯，你自然就不再全信它了。</div>
+      <div class="eg">
+        <div class="elabel">實際操作</div>
+        <div class="eitems">
+          <div class="eitem">2026/03/10 寫：「這篇 IG 一定沒人在乎，發了也是浪費時間」</div>
+          <div class="eitem">三週後回來看：47 則留言、收藏數 230、新增粉絲 89 人</div>
+          <div class="eitem">重複做幾輪，你就不再被它的語氣帶著走了</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 面對陰影 -->
+    <div class="card">
+      <div class="chead"><div class="nbadge">4</div><div><div class="cname">面對陰影</div><div class="cen">SHADOW WORK</div></div></div>
+      <div class="action">
+        <div class="alabel">怎麼做</div>
+        <div class="atext">閉眼，想像你藏起來的那個自己站在你面前，問它：「我平常怎麼對你？我一直在忽略你嗎？」</div>
+      </div>
+      <div class="desc">Stutz 說，「陰影」是你不願承認的那個部分——你的自卑、你的嫉妒、你曾受過傷的地方。你越壓著不看，它越在背後主導你的決定。這個練習不是要你戰勝它，而是第一次願意承認它存在，這就是真正突破的起點。</div>
+      <div class="eg">
+        <div class="elabel">可以問自己</div>
+        <div class="eitems">
+          <div class="eitem">「我看到那個人成功，我心裡有嫉妒——我願意承認這件事嗎？」</div>
+          <div class="eitem">「我最不想讓客戶或粉絲看見我哪一面？那個部分我怎麼對待它？」</div>
+          <div class="eitem">「如果我無條件接受這個部分的自己，我會有什麼不一樣的感覺？」</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 接受 PUH -->
+    <div class="card">
+      <div class="chead"><div class="nbadge">5</div><div><div class="cname">接受 PUH</div><div class="cen">THREE ASPECTS OF REALITY</div></div></div>
+      <div class="action">
+        <div class="alabel">怎麼做</div>
+        <div class="atext">每次 Part X 出現，對自己說：「這是人生的標配，不是只有我才遇到。」然後繼續前進。</div>
+      </div>
+      <div class="puh">
+        <div class="pi"><div class="pl">P</div><div class="pw">PAIN</div><div class="pz">痛苦</div></div>
+        <div class="pi"><div class="pl">U</div><div class="pw">UNCERTAINTY</div><div class="pz">不確定</div></div>
+        <div class="pi"><div class="pl">H</div><div class="pw">HARD WORK</div><div class="pz">持續功課</div></div>
+      </div>
+      <div class="desc">Stutz 說，人生有三件事是保證會發生的：痛苦、不確定、需要持續努力。大多數人卡住，是因為誤以為這三件事代表「出了問題」。其實它們是人生的標配，每個人都有。當你能接受 PUH 是正常的，Part X 就失去了最大的武器。</div>
+      <div class="eg">
+        <div class="elabel">轉換句式</div>
+        <div class="eitems">
+          <div class="eitem">「我怎麼又做不好，是不是根本不適合」→「這是 P，我繼續」</div>
+          <div class="eitem">「為什麼這條路這麼不確定，別人好像都很順」→「這是 U，每個人都在穿越」</div>
+          <div class="eitem">「這件事永遠做不完，我好累」→「這是 H，是過程，不是我的問題」</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 金句 -->
+  <div class="qbox">
+    <div class="qm">❝</div>
+    <div class="qt">你永遠殺不掉它，<br>但你可以學會<br>每次打亂它的節奏。</div>
+    <div class="qs">— Phil Stutz《從低谷突破》</div>
+  </div>
+
+  <!-- 社群追蹤 -->
+  <div class="social">
+    <div class="stitle">喜歡這張工具卡？</div>
+    <div class="ssub">追蹤我的 IG，每週分享 AI 行銷、品牌、<br>還有那些沒人說出口的卡關故事</div>
+    <div class="scards">
+      <a class="sc ig" href="https://www.instagram.com/din_din_wang" target="_blank">
+        <span class="sico">📸</span>
+        <div class="spl">INSTAGRAM</div>
+        <div class="shn">@din_din_wang</div>
+        <span class="sact">追蹤我</span>
+      </a>
+      <a class="sc ln" href="https://lin.ee/ONzEi8u" target="_blank">
+        <span class="sico">💬</span>
+        <div class="spl">LINE 官方帳號</div>
+        <div class="shn">宇宙種子</div>
+        <span class="sact">加好友</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="fbrand">宇宙種子</div>
+    <div class="fhandle">@din_din_wang</div>
+    <div class="fline"></div>
+    <div class="fslogan">每一個意念與行動，都在持續為未來種下一顆好種子<br>讓它開花，長成屬於你的無限宇宙</div>
+  </div>
+
+</div>
+</body>
+</html>
