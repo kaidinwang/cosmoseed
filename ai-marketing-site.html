@@ -9,8 +9,8 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:         #161628;
-  --bg2:        #1e1e32;
+  --bg:         #1e1e38;
+  --bg2:        #262644;
   --bg-card:    rgba(255,255,255,0.04);
   --text:       #f0f0ff;
   --muted:      #7a7a9a;
@@ -52,7 +52,7 @@ a { text-decoration: none; }
 /* ── Nav ── */
 nav {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(22,22,40,0.92);
+  background: rgba(28,28,52,0.92);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255,45,149,0.12);
   padding: 14px 24px;
@@ -326,8 +326,8 @@ nav {
   border-radius: 99px; padding: 4px 14px; margin-bottom: 14px;
 }
 .vibe-copy h4 { font-size: 17px; color: #fff; margin-bottom: 4px; font-weight: 600; }
-.vibe-copy .copy-arrow { color: var(--cta); font-size: 13px; margin: 8px 0 6px; font-weight: 600; }
-.vibe-copy .copy-value { font-size: 16px; font-weight: 600; color: var(--cta); margin-bottom: 12px; }
+.vibe-copy .copy-arrow { color: var(--cta); font-size: 16px; margin: 12px 0 8px; font-weight: 800; letter-spacing: 0.05em; }
+.vibe-copy .copy-value { font-size: 22px; font-weight: 800; color: var(--cta); margin-bottom: 14px; line-height: 1.3; text-shadow: 0 0 16px rgba(255,45,149,0.3); }
 .vibe-copy .copy-desc { font-size: 14px; color: #a0a0c0; line-height: 1.8; }
 .vibe-copy .copy-who {
   margin-top: 16px; padding: 12px 16px;
@@ -531,7 +531,7 @@ footer {
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo">✦ Cosmo<span class="seed">Seed</span> <span class="ai">AI</span></a>
+    <a href="#" class="nav-logo">✦ CosmoSeed <span class="ai">AI</span></a>
     <ul class="nav-links">
       <li><a href="#tools">工具</a></li>
       <li><a href="#vibe-lab">Vibe Lab</a></li>
@@ -583,12 +583,191 @@ footer {
   </div>
 </section>
 
+<!-- VIBE CODING LAB + POSITIONING (合併) -->
+<section class="section vibe-lab" id="vibe-lab">
+  <div class="container">
+    <div class="section-header">
+      <span class="tag tag-purple" style="margin-bottom:14px;display:inline-block">Vibe Coding Lab｜獲客變現工具</span>
+      <h2>不需懂任何程式碼，只要出一張嘴<br>你也可以做出<span class="glow-text-pur">屬於自己的獲客工具</span></h2>
+      <p>這些工具都是我用 AI Vibe Coding 做出來的。<br>這些不是工具，是你可以直接複製的應用場景——<strong style="color:#e0e0ff">只要經過學習，人人都可以自己做出來。</strong></p>
+    </div>
+
+    <!-- 工具 1：財神爺卜卦 -->
+    <div class="vibe-row">
+      <div class="vibe-card">
+        <div class="vibe-card-header">
+          <div class="vibe-card-icon">🏮</div>
+          <div class="card-sub">破冰工具 × 信任建立</div>
+          <h3>財神爺卜卦</h3>
+          <p>輸入姓名，由 AI 模擬財神爺給出今日財運指引與行動建議。互動有趣、結果即時，讓陌生客戶第一次就記住你。</p>
+        </div>
+        <div class="vibe-card-actions">
+          <button class="vibe-btn-open" id="btn-fortune" onclick="toggleIframe('fortune')">在頁面內開啟</button>
+        </div>
+      </div>
+      <div class="vibe-copy">
+        <span class="vibe-copy-audience" style="color:#ff8c42;background:rgba(255,140,66,0.1);border:1px solid rgba(255,140,66,0.25)">適合族群：業務 × 銷售人員 × 品牌暖身</span>
+        <div class="copy-arrow">→ 核心應用</div>
+        <div class="copy-value">破冰 + 快速建立好感</div>
+        <div class="copy-desc">你是業務嗎？在名片後面放一個 QR Code，讓客戶掃描體驗財神卜卦。卜完卦，他已經對你有印象了——你就不再是「陌生的業務」。</div>
+        <div class="copy-who">
+          <strong>適合這些人用：</strong><br>
+          保險業務、直銷夥伴、房仲、理財顧問、個人品牌經營者、任何需要「先破冰再成交」的人
+        </div>
+        <div class="copy-who" style="margin-top:10px;border-color:rgba(255,140,66,0.2);background:rgba(255,140,66,0.05)">
+          你也可以做出跟自己行業相關的<strong style="color:#ffb870">互動小測驗</strong>——<br>
+          例如：保險業的「你的風險保障夠嗎？」、房仲的「你的購屋時機測試」...<br>
+          只要知道怎麼下 Prompt，隨時可以創造千變萬化的互動工具。<br>
+          <strong style="color:#ff8c42">輕鬆為品牌省下幾十萬的開發預算。</strong>
+        </div>
+      </div>
+    </div>
+    <div class="iframe-fullwidth" id="iframe-fortune">
+      <iframe src="https://din-fortune-2026.neocities.org/fortune/" loading="lazy" title="財神爺卜卦"></iframe>
+    </div>
+
+    <!-- 工具 2：塔羅占卜 -->
+    <div class="vibe-row">
+      <div class="vibe-card">
+        <div class="vibe-card-header">
+          <div class="vibe-card-icon">🃏</div>
+          <div class="card-sub">療癒內容產品化 × 24hr 互動</div>
+          <h3>塔羅占卜</h3>
+          <p>AI 驅動的塔羅解牌工具，根據使用者的問題與選牌給出個人化詮釋。把你的專業知識，變成任何人都能隨時體驗的入口。</p>
+        </div>
+        <div class="vibe-card-actions">
+          <button class="vibe-btn-open" id="btn-tarot" onclick="toggleIframe('tarot')">在頁面內開啟</button>
+        </div>
+      </div>
+      <div class="vibe-copy">
+        <span class="vibe-copy-audience" style="color:#b48aff;background:rgba(180,138,255,0.1);border:1px solid rgba(180,138,255,0.25)">適合族群：身心靈 × 療癒師 × 命理師</span>
+        <div class="copy-arrow">→ 核心應用</div>
+        <div class="copy-value">專業內容產品化</div>
+        <div class="copy-desc">你的塔羅知識不該只活在一對一的諮詢現場。做成互動工具，讓它 24 小時替你說話、替你篩選出真正有興趣的客戶。</div>
+        <div class="copy-who">
+          <strong>適合這些人用：</strong><br>
+          塔羅師、星座占卜師、身心靈工作者、療癒課程老師、想用神秘感增加品牌吸引力的創作者
+        </div>
+        <div class="copy-who" style="margin-top:10px;border-color:rgba(180,138,255,0.2);background:rgba(180,138,255,0.05)">
+          你的專業是什麼？<strong style="color:#c8a8ff">做成互動工具</strong>，讓它幫你全天候吸引客戶。<br>
+          美容師的膚質測試、瑜珈老師的體式推薦、教練的自我檢測...<br>
+          <strong style="color:#b48aff">這些都不需要工程師，只需要你懂得怎麼描述它。</strong>
+        </div>
+      </div>
+    </div>
+    <div class="iframe-fullwidth" id="iframe-tarot">
+      <iframe src="https://din-fortune-2026.neocities.org/tarot/" loading="lazy" title="塔羅占卜"></iframe>
+    </div>
+
+    <!-- 工具 3：人類圖 -->
+    <div class="vibe-row">
+      <div class="vibe-card">
+        <div class="vibe-card-header">
+          <div class="vibe-card-icon">🌌</div>
+          <div class="card-sub">專業系統互動化 × 潛在客戶篩選</div>
+          <h3>人類圖量子探測</h3>
+          <p>輸入生日資訊，自動解析人類圖能量類型與核心特質，提供個人化的生命設計指引。讓複雜的系統變得親民易懂。</p>
+        </div>
+        <div class="vibe-card-actions">
+          <button class="vibe-btn-open" id="btn-hd" onclick="toggleIframe('hd')">在頁面內開啟</button>
+        </div>
+      </div>
+      <div class="vibe-copy">
+        <span class="vibe-copy-audience" style="color:#a78bfa;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25)">適合族群：人類圖師 × 靈性品牌 × 教練</span>
+        <div class="copy-arrow">→ 核心應用</div>
+        <div class="copy-value">讓服務從被動等待 → 主動吸引</div>
+        <div class="copy-desc">客戶在體驗工具的過程中，已經開始對你的服務產生信任。當他想深入了解，他會主動來找你——而不是你追著他跑。</div>
+        <div class="copy-who">
+          <strong>適合這些人用：</strong><br>
+          人類圖解讀師、靈魂藍圖分析師、正能量教練、NLP從業者、任何「需要讓客戶先理解系統」的服務提供者
+        </div>
+        <div class="copy-who" style="margin-top:10px;border-color:rgba(167,139,250,0.2);background:rgba(167,139,250,0.05)">
+          不管你的系統有多複雜，<strong style="color:#c8b0ff">都可以被做成「讓人願意主動體驗」的工具。</strong><br>
+          這就是 Vibe Coding 的核心價值——把你的專業，變成 24 小時運作的獲客引擎。
+        </div>
+      </div>
+    </div>
+    <div class="iframe-fullwidth" id="iframe-hd">
+      <iframe src="https://din-fortune-2026.neocities.org/human-design/" loading="lazy" title="人類圖量子探測"></iframe>
+    </div>
+
+    <!-- 外連工具 2欄 -->
+    <div class="vibe-ext-grid">
+      <div class="vibe-row" style="display:block">
+        <div class="vibe-card">
+          <div class="vibe-card-header">
+            <div class="vibe-card-icon">⏱️</div>
+            <div class="card-sub">個人效率系統化 × P人必備</div>
+            <h3>專注效率紀錄器</h3>
+            <p>記錄你每天的專注時段、任務完成狀況與能量分配，讓你看見自己真正的工作模式，建立屬於自己節奏的效率系統。</p>
+          </div>
+          <div class="vibe-card-actions">
+            <a class="vibe-btn-ext" href="https://gemini.google.com/share/f1064c62ae73" target="_blank">在新分頁開啟 ↗</a>
+          </div>
+        </div>
+        <div class="vibe-copy" style="margin-top:12px">
+          <span class="vibe-copy-audience" style="color:#5ce1e6;background:rgba(92,225,230,0.1);border:1px solid rgba(92,225,230,0.25)">適合族群：自由工作者 × ADHD × P人</span>
+          <div class="copy-arrow">→ 核心應用</div>
+          <div class="copy-value">把「感覺很忙」變成看得見的數據</div>
+          <div class="copy-desc">效率不靠意志力，靠系統。你也可以做出專屬課程學員的效率工具，作為加值服務或社群送出。</div>
+        </div>
+      </div>
+      <div class="vibe-row" style="display:block">
+        <div class="vibe-card">
+          <div class="vibe-card-header">
+            <div class="vibe-card-icon">📊</div>
+            <div class="card-sub">一人公司 × 經營視角建立</div>
+            <h3>公司記帳工具</h3>
+            <p>專為一人公司設計的簡易記帳與收支分析工具。不只記錄數字，更幫你建立「我在經營一間公司」的老闆思維與財務感知。</p>
+          </div>
+          <div class="vibe-card-actions">
+            <a class="vibe-btn-ext" href="https://gemini.google.com/share/94fc063ad26a" target="_blank">在新分頁開啟 ↗</a>
+          </div>
+        </div>
+        <div class="vibe-copy" style="margin-top:12px">
+          <span class="vibe-copy-audience" style="color:#7ddb8d;background:rgba(125,219,141,0.1);border:1px solid rgba(125,219,141,0.25)">適合族群：自由工作者 × 微型創業者</span>
+          <div class="copy-arrow">→ 核心應用</div>
+          <div class="copy-value">從「打工視角」切換到「經營視角」</div>
+          <div class="copy-desc">這個視角的轉換，比任何財務技巧都重要。決定你做的是工作，還是事業。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAN DO THIS -->
+<section class="section conversion-section" id="can-do-this">
+  <div class="container">
+    <span class="tag" style="margin-bottom:20px;display:inline-block">你也可以做到</span>
+    <h2>你也可以做出<br><span class="glow-text">專屬品牌的工具</span></h2>
+    <p>不需要是工程師，不需要龐大預算。<br>只需要你的應用場景 + 一句正確的 Prompt + 願意陪你走的引導者。<br><strong style="color:#e0e0ff">這正是 Vibe Coding 在做的事。</strong></p>
+    <div style="margin:32px auto;max-width:520px;display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:left">
+      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:16px 20px;font-size:14px;color:#d0d0f0">
+        ✅ <strong style="color:#fff">省下幾十萬</strong>的開發預算
+      </div>
+      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:16px 20px;font-size:14px;color:#d0d0f0">
+        ✅ <strong style="color:#fff">24 小時</strong>自動獲客
+      </div>
+      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:16px 20px;font-size:14px;color:#d0d0f0">
+        ✅ <strong style="color:#fff">任何行業</strong>都能複製
+      </div>
+      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:16px 20px;font-size:14px;color:#d0d0f0">
+        ✅ <strong style="color:#fff">零基礎</strong>也能學會
+      </div>
+    </div>
+    <a href="https://gemini.google.com/share/bff027b27f19" target="_blank" class="btn btn-primary" style="font-size:18px;padding:18px 48px;letter-spacing:0.04em">
+      我也想學 Vibe Coding → 看課程
+    </a>
+    <p style="margin-top:16px;font-size:13px;color:var(--muted)">不確定自己適合嗎？先<a href="https://lin.ee/ZEQhZDr" target="_blank" style="color:var(--cta)">加 LINE 聊聊</a>，免費</p>
+  </div>
+</section>
+
 <!-- TOOLS OVERVIEW -->
 <section class="section" id="tools">
   <div class="container">
     <div class="section-header">
       <span class="tag" style="margin-bottom:14px;display:inline-block">內容創作工具</span>
-      <h2>五個工具，解決你每天都在煩惱的事</h2>
+      <h2>社群內容工具，讓你不再為寫作卡關</h2>
       <p>不需要靈感爆發，不需要文案天賦——只要你知道自己想說什麼。</p>
     </div>
     <div class="tools-grid">
@@ -630,169 +809,6 @@ footer {
         <div class="tool-card-footer"><span class="tool-link-muted">即將推出</span></div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- VIBE CODING LAB + POSITIONING (合併) -->
-<section class="section vibe-lab" id="vibe-lab">
-  <div class="container">
-    <div class="section-header">
-      <span class="tag tag-purple" style="margin-bottom:14px;display:inline-block">Vibe Coding Lab｜獲客變現工具</span>
-      <h2>不需懂任何程式碼，只要出一張嘴<br>你也可以做出<span class="glow-text-pur">屬於自己的獲客工具</span></h2>
-      <p>這些工具都是我用 AI Vibe Coding 做出來的。<br>這些不是工具，是你可以直接複製的應用場景。</p>
-    </div>
-
-    <!-- 工具 1：財神爺卜卦 -->
-    <div class="vibe-row">
-      <div class="vibe-card">
-        <div class="vibe-card-header">
-          <div class="vibe-card-icon">🏮</div>
-          <div class="card-sub">破冰工具 × 信任建立</div>
-          <h3>財神爺卜卦</h3>
-          <p>輸入姓名，由 AI 模擬財神爺給出今日財運指引與行動建議。互動有趣、結果即時，讓陌生客戶第一次就記住你。</p>
-        </div>
-        <div class="vibe-card-actions">
-          <button class="vibe-btn-open" id="btn-fortune" onclick="toggleIframe('fortune')">在頁面內開啟</button>
-        </div>
-      </div>
-      <div class="vibe-copy">
-        <span class="vibe-copy-audience" style="color:#ff8c42;background:rgba(255,140,66,0.1);border:1px solid rgba(255,140,66,0.25)">適合族群：業務 × 銷售人員 × 品牌暖身</span>
-        <div class="copy-arrow">→ 核心應用</div>
-        <div class="copy-value">破冰 + 快速建立好感</div>
-        <div class="copy-desc">你是業務嗎？在名片後面放一個 QR Code，讓客戶掃描體驗財神卜卦。<br>卜完卦，他已經對你有印象了——你就不再是「陌生的業務」。</div>
-        <div class="copy-who">
-          <strong>適合這些人用：</strong><br>
-          保險業務、直銷夥伴、房仲、理財顧問、個人品牌經營者、任何需要「先破冰再成交」的人
-        </div>
-      </div>
-    </div>
-    <div class="iframe-fullwidth" id="iframe-fortune">
-      <iframe src="https://din-fortune-2026.neocities.org/fortune/" loading="lazy" title="財神爺卜卦"></iframe>
-    </div>
-
-    <!-- 工具 2：塔羅占卜 -->
-    <div class="vibe-row">
-      <div class="vibe-card">
-        <div class="vibe-card-header">
-          <div class="vibe-card-icon">🃏</div>
-          <div class="card-sub">療癒內容產品化 × 24hr 互動</div>
-          <h3>塔羅占卜</h3>
-          <p>AI 驅動的塔羅解牌工具，根據使用者的問題與選牌給出個人化詮釋。把你的專業知識，變成任何人都能隨時體驗的入口。</p>
-        </div>
-        <div class="vibe-card-actions">
-          <button class="vibe-btn-open" id="btn-tarot" onclick="toggleIframe('tarot')">在頁面內開啟</button>
-        </div>
-      </div>
-      <div class="vibe-copy">
-        <span class="vibe-copy-audience" style="color:#b48aff;background:rgba(180,138,255,0.1);border:1px solid rgba(180,138,255,0.25)">適合族群：身心靈 × 療癒師 × 命理師</span>
-        <div class="copy-arrow">→ 核心應用</div>
-        <div class="copy-value">專業內容產品化</div>
-        <div class="copy-desc">你的塔羅知識不該只活在一對一的諮詢現場。<br>做成互動工具，讓它 24 小時替你說話、替你篩選出真正有興趣的客戶。</div>
-        <div class="copy-who">
-          <strong>適合這些人用：</strong><br>
-          塔羅師、星座占卜師、身心靈工作者、療癒課程老師、想用神秘感增加品牌吸引力的創作者
-        </div>
-      </div>
-    </div>
-    <div class="iframe-fullwidth" id="iframe-tarot">
-      <iframe src="https://din-fortune-2026.neocities.org/tarot/" loading="lazy" title="塔羅占卜"></iframe>
-    </div>
-
-    <!-- 工具 3：人類圖 -->
-    <div class="vibe-row">
-      <div class="vibe-card">
-        <div class="vibe-card-header">
-          <div class="vibe-card-icon">🌌</div>
-          <div class="card-sub">專業系統互動化 × 潛在客戶篩選</div>
-          <h3>人類圖量子探測</h3>
-          <p>輸入生日資訊，自動解析人類圖能量類型與核心特質，提供個人化的生命設計指引。讓複雜的系統變得親民易懂。</p>
-        </div>
-        <div class="vibe-card-actions">
-          <button class="vibe-btn-open" id="btn-hd" onclick="toggleIframe('hd')">在頁面內開啟</button>
-        </div>
-      </div>
-      <div class="vibe-copy">
-        <span class="vibe-copy-audience" style="color:#a78bfa;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25)">適合族群：人類圖師 × 靈性品牌 × 教練</span>
-        <div class="copy-arrow">→ 核心應用</div>
-        <div class="copy-value">讓服務從被動等待 → 主動吸引</div>
-        <div class="copy-desc">客戶在體驗工具的過程中，已經開始對你的服務產生信任。<br>當他想深入了解，他會主動來找你——而不是你追著他跑。</div>
-        <div class="copy-who">
-          <strong>適合這些人用：</strong><br>
-          人類圖解讀師、靈魂藍圖分析師、正能量教練、NLP從業者、任何「需要讓客戶先理解系統」的服務提供者
-        </div>
-      </div>
-    </div>
-    <div class="iframe-fullwidth" id="iframe-hd">
-      <iframe src="https://din-fortune-2026.neocities.org/human-design/" loading="lazy" title="人類圖量子探測"></iframe>
-    </div>
-
-    <!-- 外連工具 2欄 -->
-    <div class="vibe-ext-grid">
-      <div class="vibe-row" style="display:block">
-        <div class="vibe-card">
-          <div class="vibe-card-header">
-            <div class="vibe-card-icon">⏱️</div>
-            <div class="card-sub">個人效率系統化 × P人必備</div>
-            <h3>專注效率紀錄器</h3>
-            <p>記錄你每天的專注時段、任務完成狀況與能量分配，讓你看見自己真正的工作模式，建立屬於自己節奏的效率系統。</p>
-          </div>
-          <div class="vibe-card-actions">
-            <a class="vibe-btn-ext" href="https://gemini.google.com/share/f1064c62ae73" target="_blank">在新分頁開啟 ↗</a>
-          </div>
-        </div>
-        <div class="vibe-copy" style="margin-top:12px">
-          <span class="vibe-copy-audience" style="color:#5ce1e6;background:rgba(92,225,230,0.1);border:1px solid rgba(92,225,230,0.25)">適合族群：自由工作者 × ADHD × P人</span>
-          <div class="copy-arrow">→ 核心應用</div>
-          <div class="copy-value">把「感覺很忙」變成可以看見的數據</div>
-          <div class="copy-desc">效率不靠意志力，靠系統。適合用在課程教材、社群互動，或直接送給你的目標客群使用。</div>
-        </div>
-      </div>
-
-      <div class="vibe-row" style="display:block">
-        <div class="vibe-card">
-          <div class="vibe-card-header">
-            <div class="vibe-card-icon">📊</div>
-            <div class="card-sub">一人公司 × 經營視角建立</div>
-            <h3>公司記帳工具</h3>
-            <p>專為一人公司設計的簡易記帳與收支分析工具。不只記錄數字，更幫你建立「我在經營一間公司」的老闆思維與財務感知。</p>
-          </div>
-          <div class="vibe-card-actions">
-            <a class="vibe-btn-ext" href="https://gemini.google.com/share/94fc063ad26a" target="_blank">在新分頁開啟 ↗</a>
-          </div>
-        </div>
-        <div class="vibe-copy" style="margin-top:12px">
-          <span class="vibe-copy-audience" style="color:#7ddb8d;background:rgba(125,219,141,0.1);border:1px solid rgba(125,219,141,0.25)">適合族群：自由工作者 × 微型創業者</span>
-          <div class="copy-arrow">→ 核心應用</div>
-          <div class="copy-value">從「打工視角」切換到「經營視角」</div>
-          <div class="copy-desc">這個視角的轉換，比任何財務技巧都重要。決定你做的是工作，還是事業。</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- CONVERSION SECTION -->
-<section class="section conversion-section" id="can-do-this">
-  <div class="container">
-    <span class="tag" style="margin-bottom:20px;display:inline-block">你也可以做到</span>
-    <h2>你也可以做出<br><span class="glow-text">這種工具</span></h2>
-    <p>你不需要是工程師。這些工具，我都是用 AI Vibe Coding 做出來的。<br>你需要的只是：一個應用場景 + 一個願意幫你做的 AI + 一個引導你的人。</p>
-
-    <div class="step-flow">
-      <div class="step-pill">找到你的應用場景</div>
-      <span class="step-arrow">→</span>
-      <div class="step-pill">用 AI 快速原型</div>
-      <span class="step-arrow">→</span>
-      <div class="step-pill">放到你的品牌裡</div>
-      <span class="step-arrow">→</span>
-      <div class="step-pill">開始轉換</div>
-    </div>
-
-    <a href="https://gemini.google.com/share/bff027b27f19" target="_blank" class="btn btn-primary" style="font-size:17px;padding:16px 40px">
-      我也想學 Vibe Coding → 看課程
-    </a>
-    <p style="margin-top:16px;font-size:13px;color:var(--muted)">不確定自己適合嗎？先<a href="https://lin.ee/ZEQhZDr" target="_blank" style="color:var(--cta)">加 LINE 聊聊</a>，免費</p>
   </div>
 </section>
 
@@ -1023,50 +1039,69 @@ footer {
   </div>
 </section>
 
-<!-- BLUEPRINT -->
-<section class="section" id="blueprint">
+<!-- BLUEPRINT + CONSULTING (合併) -->
+<section class="section" id="blueprint" style="background:var(--bg2)">
   <div class="container">
-    <div style="text-align:center;max-width:600px;margin:0 auto">
-      <span class="tag tag-purple" style="margin-bottom:16px;display:inline-block">進階資源</span>
-      <h2 style="font-size:clamp(22px,3vw,30px);margin-bottom:16px">你缺的不是更多內容，<br>而是讓內容<span class="glow-text-pur">變現的結構</span></h2>
-      <p style="color:#a0a0c0;font-size:15px;line-height:1.9;margin-bottom:32px">很多人做了很久的內容，卻發現追蹤者很多但沒人買單。問題不是你不夠努力——是你缺少一張地圖。</p>
-      <div class="bp-modules">
-        <div class="bp-mod"><div class="bp-mod-num">模組 01</div><div class="bp-mod-title">定位釐清</div><div class="bp-mod-sub">你在幫誰解決什麼</div></div>
-        <div class="bp-mod"><div class="bp-mod-num">模組 02</div><div class="bp-mod-title">信任建立路徑</div><div class="bp-mod-sub">陌生人如何信任你</div></div>
-        <div class="bp-mod"><div class="bp-mod-num">模組 03</div><div class="bp-mod-title">變現產品結構</div><div class="bp-mod-sub">免費→低價→高價</div></div>
-        <div class="bp-mod"><div class="bp-mod-num">模組 04</div><div class="bp-mod-title">內容策略地圖</div><div class="bp-mod-sub">每篇都有任務</div></div>
-        <div class="bp-mod"><div class="bp-mod-num">模組 05</div><div class="bp-mod-title">顧問轉換設計</div><div class="bp-mod-sub">追蹤→私訊→成交</div></div>
-        <div class="bp-mod" style="background:rgba(123,97,255,0.1);border-color:rgba(123,97,255,0.2);display:flex;align-items:center;justify-content:center;text-align:center">
-          <div><div style="font-size:22px;margin-bottom:4px">🗺</div><div style="color:var(--accent2);font-size:12px;font-weight:700">完整藍圖</div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center">
+      <div>
+        <span class="tag tag-purple" style="margin-bottom:16px;display:inline-block">進階資源</span>
+        <h2 style="font-size:clamp(22px,3vw,30px);margin-bottom:16px">你缺的不是更多內容，<br>而是讓內容<span class="glow-text-pur">變現的結構</span></h2>
+        <p style="color:#a0a0c0;font-size:15px;line-height:1.9;margin-bottom:24px">很多人做了很久的內容，卻發現追蹤者很多但沒人買單。問題不是你不夠努力——是你缺少一張地圖。</p>
+        <div class="bp-modules" style="margin-bottom:24px">
+          <div class="bp-mod"><div class="bp-mod-num">模組 01</div><div class="bp-mod-title">定位釐清</div><div class="bp-mod-sub">你在幫誰解決什麼</div></div>
+          <div class="bp-mod"><div class="bp-mod-num">模組 02</div><div class="bp-mod-title">信任建立路徑</div><div class="bp-mod-sub">陌生人如何信任你</div></div>
+          <div class="bp-mod"><div class="bp-mod-num">模組 03</div><div class="bp-mod-title">變現產品結構</div><div class="bp-mod-sub">免費→低價→高價</div></div>
+          <div class="bp-mod"><div class="bp-mod-num">模組 04</div><div class="bp-mod-title">內容策略地圖</div><div class="bp-mod-sub">每篇都有任務</div></div>
+          <div class="bp-mod"><div class="bp-mod-num">模組 05</div><div class="bp-mod-title">顧問轉換設計</div><div class="bp-mod-sub">追蹤→私訊→成交</div></div>
+          <div class="bp-mod" style="background:rgba(123,97,255,0.1);border-color:rgba(123,97,255,0.2);display:flex;align-items:center;justify-content:center;text-align:center">
+            <div><div style="font-size:22px;margin-bottom:4px">🗺</div><div style="color:var(--accent2);font-size:12px;font-weight:700">完整藍圖</div></div>
+          </div>
+        </div>
+        <a href="https://lin.ee/ZEQhZDr" target="_blank" class="btn btn-purple">
+          加 LINE，免費領取品牌變現藍圖 →
+        </a>
+        <p style="font-size:13px;color:var(--muted);margin-top:12px">加入後傳「藍圖」兩個字，馬上送出</p>
+      </div>
+      <div style="background:linear-gradient(135deg,rgba(255,45,149,0.08),rgba(123,97,255,0.08));border:1px solid rgba(255,45,149,0.2);border-radius:20px;padding:36px;text-align:center">
+        <span class="tag" style="margin-bottom:20px;display:inline-block">LINE 諮詢</span>
+        <h3 style="font-size:24px;margin-bottom:16px;font-weight:600">如果你需要有人<br>陪你整合全局</h3>
+        <p style="color:#a0a0c0;font-size:14px;line-height:1.9;margin-bottom:28px">用過工具、看過 Prompt 包，卻還是覺得少一塊？加 LINE 聊聊你的品牌，免費，無壓力。</p>
+        <a href="https://lin.ee/ZEQhZDr" target="_blank" class="btn btn-primary" style="width:100%;text-align:center;display:block;font-size:16px;padding:16px">
+          加 LINE 諮詢 →
+        </a>
+        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08)">
+          <p style="font-size:13px;color:var(--muted);margin-bottom:16px">或是直接去看課程：</p>
+          <a href="https://gemini.google.com/share/bff027b27f19" target="_blank" class="btn btn-purple" style="width:100%;text-align:center;display:block;font-size:15px;padding:14px">
+            學 Vibe Coding → 看課程
+          </a>
         </div>
       </div>
-      <a href="https://lin.ee/ZEQhZDr" target="_blank" class="btn btn-purple" style="font-size:16px;padding:14px 36px">
-        加 LINE，免費領取品牌變現藍圖 →
-      </a>
-      <p style="font-size:13px;color:var(--muted);margin-top:12px">加入後傳「藍圖」兩個字，馬上送出</p>
     </div>
   </div>
 </section>
 
-<!-- CONSULTING CTA -->
-<section class="consulting-cta" id="consulting">
+<!-- BOTTOM COURSE CTA -->
+<section style="padding:80px 0;text-align:center;background:linear-gradient(180deg,rgba(255,45,149,0.06) 0%,rgba(123,97,255,0.06) 100%);border-top:1px solid rgba(255,45,149,0.12)" id="consulting">
   <div class="container">
-    <span class="tag" style="margin-bottom:16px;display:inline-block">LINE 諮詢</span>
-    <h2>加 LINE，送你<span class="glow-text">品牌變現藍圖</span></h2>
-    <p>如果你已經用過工具、也看過 Prompt 包，卻還是覺得「缺少一個人幫你整合全局」——加 LINE 聊聊，免費，無壓力。</p>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a href="https://lin.ee/ZEQhZDr" target="_blank" class="btn btn-primary" style="font-size:16px;padding:15px 36px">
-        加 LINE 諮詢，送品牌變現藍圖 →
-      </a>
-    </div>
-    <p style="font-size:13px;color:var(--muted);margin-top:20px">加入後傳「藍圖」兩個字，馬上送出</p>
+    <p style="font-size:13px;color:var(--accent2);font-weight:700;letter-spacing:0.1em;margin-bottom:16px">VIBE CODING</p>
+    <h2 style="font-size:clamp(26px,4vw,42px);margin-bottom:20px;font-weight:700">
+      不需要懂程式碼<br>你也可以做出<span class="glow-text">讓品牌賺錢的工具</span>
+    </h2>
+    <p style="color:#a0a0c0;font-size:16px;max-width:520px;margin:0 auto 36px;line-height:1.9">
+      這些工具，都是我用 AI Vibe Coding 做出來的。<br>
+      你也可以做到。而且比你想像的快很多。
+    </p>
+    <a href="https://gemini.google.com/share/bff027b27f19" target="_blank" class="btn btn-primary" style="font-size:20px;padding:20px 56px;letter-spacing:0.04em;box-shadow:0 0 40px rgba(255,45,149,0.4)">
+      立即看課程 →
+    </a>
+    <p style="margin-top:20px;font-size:13px;color:var(--muted)">或<a href="https://lin.ee/ZEQhZDr" target="_blank" style="color:var(--cta);margin-left:4px">加 LINE 先聊聊</a>，完全免費</p>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <p style="font-size:18px;font-weight:700;margin-bottom:4px;color:#fff">✦ CosmoSeed <span style="color:var(--cta);text-shadow:0 0 14px rgba(255,45,149,0.9)">AI</span></p>
+    <p style="font-size:18px;font-weight:700;margin-bottom:4px;color:#fff">✦ CosmoSeed <span style="color:var(--cta);text-shadow:0 0 14px rgba(255,45,149,0.9);">AI</span></p>
     <p style="font-size:13px;color:var(--muted);margin-bottom:4px;line-height:1.8">每一個意念與行動，都在持續為未來種下一顆好種子</p>
     <p style="font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.8">讓它開花，長成屬於你的無限宇宙</p>
     <div class="footer-social">
