@@ -9,8 +9,8 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:         #0d0d1a;
-  --bg2:        #13131f;
+  --bg:         #161628;
+  --bg2:        #1e1e32;
   --bg-card:    rgba(255,255,255,0.04);
   --text:       #f0f0ff;
   --muted:      #7a7a9a;
@@ -52,7 +52,7 @@ a { text-decoration: none; }
 /* ── Nav ── */
 nav {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(13,13,26,0.88);
+  background: rgba(22,22,40,0.92);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255,45,149,0.12);
   padding: 14px 24px;
@@ -66,7 +66,8 @@ nav {
   color: #fff; text-decoration: none;
   display: flex; align-items: center; gap: 8px;
 }
-.nav-logo span { color: var(--cta); text-shadow: 0 0 12px rgba(255,45,149,0.7); }
+.nav-logo .seed { color: var(--cta); text-shadow: 0 0 12px rgba(255,45,149,0.7); }
+.nav-logo .ai   { color: var(--cta); text-shadow: 0 0 14px rgba(255,45,149,0.9); }
 .nav-links { display: flex; gap: 28px; list-style: none; }
 .nav-links a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
 .nav-links a:hover { color: var(--cta); }
@@ -279,41 +280,78 @@ nav {
 
 /* ── Vibe Coding Lab ── */
 .vibe-lab { background: rgba(123,97,255,0.04); border-top: 1px solid rgba(123,97,255,0.15) !important; }
-.vibe-tools-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
-.vibe-tools-grid-2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-top: 16px; }
+
+/* 每個工具：卡片 + 說明文案 並排 */
+.vibe-row {
+  display: grid; grid-template-columns: 1fr 1.3fr; gap: 24px;
+  margin-bottom: 12px; align-items: start;
+}
+.vibe-row + .vibe-row { margin-top: 24px; }
 
 .vibe-card {
   background: rgba(123,97,255,0.06); border: 1px solid rgba(123,97,255,0.2);
   border-radius: var(--radius); overflow: hidden; transition: all .25s;
 }
-.vibe-card:hover { border-color: var(--accent); box-shadow: var(--glow-pur); transform: translateY(-3px); }
-.vibe-card-header { padding: 20px 20px 16px; }
-.vibe-card-icon { font-size: 26px; margin-bottom: 10px; }
-.vibe-card h3 { font-size: 15px; margin-bottom: 6px; color: #fff; }
-.vibe-card p { font-size: 12px; color: #8888aa; line-height: 1.6; }
-.vibe-card-actions { padding: 0 20px 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+.vibe-card:hover { border-color: var(--accent); box-shadow: var(--glow-pur); }
+.vibe-card-header { padding: 22px 22px 14px; }
+.vibe-card-icon { font-size: 32px; margin-bottom: 12px; }
+.vibe-card h3 { font-size: 18px; margin-bottom: 8px; color: #fff; font-weight: 600; }
+.vibe-card .card-sub { font-size: 13px; color: var(--accent2); font-weight: 600; margin-bottom: 8px; letter-spacing: 0.05em; }
+.vibe-card p { font-size: 14px; color: #a0a0c0; line-height: 1.7; }
+.vibe-card-actions { padding: 0 22px 18px; display: flex; gap: 8px; flex-wrap: wrap; margin-top: 4px; }
 .vibe-btn-open {
   background: rgba(123,97,255,0.15); color: var(--accent2);
   border: 1px solid rgba(123,97,255,0.3);
-  padding: 8px 16px; border-radius: 99px; font-size: 12px; font-weight: 600;
+  padding: 9px 18px; border-radius: 99px; font-size: 13px; font-weight: 600;
   cursor: pointer; font-family: inherit; transition: all .2s;
 }
 .vibe-btn-open:hover { background: rgba(123,97,255,0.3); box-shadow: var(--glow-pur); }
 .vibe-btn-ext {
   background: rgba(255,45,149,0.1); color: var(--cta);
   border: 1px solid rgba(255,45,149,0.25);
-  padding: 8px 16px; border-radius: 99px; font-size: 12px; font-weight: 600;
+  padding: 9px 18px; border-radius: 99px; font-size: 13px; font-weight: 600;
   cursor: pointer; font-family: inherit; transition: all .2s; text-decoration: none; display: inline-block;
 }
 .vibe-btn-ext:hover { background: rgba(255,45,149,0.2); box-shadow: var(--glow-soft); }
 
-.iframe-container {
-  display: none; border-top: 1px solid rgba(123,97,255,0.15);
-  background: #000;
+/* 工具定位說明（右欄）*/
+.vibe-copy {
+  padding: 24px 28px;
+  background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: var(--radius);
 }
-.iframe-container.open { display: block; animation: fadeIn .3s; }
-.iframe-container iframe {
-  width: 100%; height: 500px; border: none; display: block;
+.vibe-copy-audience {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+  border-radius: 99px; padding: 4px 14px; margin-bottom: 14px;
+}
+.vibe-copy h4 { font-size: 17px; color: #fff; margin-bottom: 4px; font-weight: 600; }
+.vibe-copy .copy-arrow { color: var(--cta); font-size: 13px; margin: 8px 0 6px; font-weight: 600; }
+.vibe-copy .copy-value { font-size: 16px; font-weight: 600; color: var(--cta); margin-bottom: 12px; }
+.vibe-copy .copy-desc { font-size: 14px; color: #a0a0c0; line-height: 1.8; }
+.vibe-copy .copy-who {
+  margin-top: 16px; padding: 12px 16px;
+  background: rgba(255,45,149,0.06); border: 1px solid rgba(255,45,149,0.15);
+  border-radius: 10px; font-size: 13px; color: #c0c0d8; line-height: 1.7;
+}
+.vibe-copy .copy-who strong { color: var(--cta); }
+
+/* iframe 全寬展開 */
+.iframe-fullwidth {
+  display: none;
+  width: 100%; margin-bottom: 32px;
+  border: 1px solid rgba(123,97,255,0.25); border-radius: var(--radius); overflow: hidden;
+  background: #0a0a18;
+}
+.iframe-fullwidth.open { display: block; animation: fadeIn .3s; }
+.iframe-fullwidth iframe { width: 100%; height: 560px; border: none; display: block; }
+
+/* 外連工具 2欄 */
+.vibe-ext-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 24px; }
+
+@media (max-width: 720px) {
+  .vibe-row { grid-template-columns: 1fr; }
+  .vibe-ext-grid { grid-template-columns: 1fr; }
 }
 
 /* ── Positioning Copy ── */
@@ -493,7 +531,7 @@ footer {
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
-    <a href="#" class="nav-logo">✦ Cosmo<span>Seed</span> AI</a>
+    <a href="#" class="nav-logo">✦ Cosmo<span class="seed">Seed</span> <span class="ai">AI</span></a>
     <ul class="nav-links">
       <li><a href="#tools">工具</a></li>
       <li><a href="#vibe-lab">Vibe Lab</a></li>
@@ -595,128 +633,142 @@ footer {
   </div>
 </section>
 
-<!-- VIBE CODING LAB -->
+<!-- VIBE CODING LAB + POSITIONING (合併) -->
 <section class="section vibe-lab" id="vibe-lab">
   <div class="container">
     <div class="section-header">
-      <span class="tag tag-purple" style="margin-bottom:14px;display:inline-block">Vibe Coding Lab</span>
-      <h2>這些工具，都是我用 <span class="glow-text-pur">AI Vibe Coding</span> 做出來的</h2>
-      <p>不是展示技術，而是讓你看見——你也可以做出這種東西。</p>
+      <span class="tag tag-purple" style="margin-bottom:14px;display:inline-block">Vibe Coding Lab｜獲客變現工具</span>
+      <h2>不需懂任何程式碼，只要出一張嘴<br>你也可以做出<span class="glow-text-pur">屬於自己的獲客工具</span></h2>
+      <p>這些工具都是我用 AI Vibe Coding 做出來的。<br>這些不是工具，是你可以直接複製的應用場景。</p>
     </div>
 
-    <div class="vibe-tools-grid">
-      <!-- 財神爺卜卦 -->
-      <div class="vibe-card" id="card-fortune">
+    <!-- 工具 1：財神爺卜卦 -->
+    <div class="vibe-row">
+      <div class="vibe-card">
         <div class="vibe-card-header">
           <div class="vibe-card-icon">🏮</div>
+          <div class="card-sub">破冰工具 × 信任建立</div>
           <h3>財神爺卜卦</h3>
-          <p>破冰工具 × 信任建立<br>適合業務、銷售、品牌暖身</p>
+          <p>輸入姓名，由 AI 模擬財神爺給出今日財運指引與行動建議。互動有趣、結果即時，讓陌生客戶第一次就記住你。</p>
         </div>
         <div class="vibe-card-actions">
-          <button class="vibe-btn-open" onclick="toggleIframe('fortune')">在頁面內開啟</button>
-        </div>
-        <div class="iframe-container" id="iframe-fortune">
-          <iframe src="https://din-fortune-2026.neocities.org/fortune/" loading="lazy" title="財神爺卜卦"></iframe>
+          <button class="vibe-btn-open" id="btn-fortune" onclick="toggleIframe('fortune')">在頁面內開啟</button>
         </div>
       </div>
+      <div class="vibe-copy">
+        <span class="vibe-copy-audience" style="color:#ff8c42;background:rgba(255,140,66,0.1);border:1px solid rgba(255,140,66,0.25)">適合族群：業務 × 銷售人員 × 品牌暖身</span>
+        <div class="copy-arrow">→ 核心應用</div>
+        <div class="copy-value">破冰 + 快速建立好感</div>
+        <div class="copy-desc">你是業務嗎？在名片後面放一個 QR Code，讓客戶掃描體驗財神卜卦。<br>卜完卦，他已經對你有印象了——你就不再是「陌生的業務」。</div>
+        <div class="copy-who">
+          <strong>適合這些人用：</strong><br>
+          保險業務、直銷夥伴、房仲、理財顧問、個人品牌經營者、任何需要「先破冰再成交」的人
+        </div>
+      </div>
+    </div>
+    <div class="iframe-fullwidth" id="iframe-fortune">
+      <iframe src="https://din-fortune-2026.neocities.org/fortune/" loading="lazy" title="財神爺卜卦"></iframe>
+    </div>
 
-      <!-- 塔羅占卜 -->
-      <div class="vibe-card" id="card-tarot">
+    <!-- 工具 2：塔羅占卜 -->
+    <div class="vibe-row">
+      <div class="vibe-card">
         <div class="vibe-card-header">
           <div class="vibe-card-icon">🃏</div>
+          <div class="card-sub">療癒內容產品化 × 24hr 互動</div>
           <h3>塔羅占卜</h3>
-          <p>療癒內容產品化<br>適合身心靈、命理師品牌</p>
+          <p>AI 驅動的塔羅解牌工具，根據使用者的問題與選牌給出個人化詮釋。把你的專業知識，變成任何人都能隨時體驗的入口。</p>
         </div>
         <div class="vibe-card-actions">
-          <button class="vibe-btn-open" onclick="toggleIframe('tarot')">在頁面內開啟</button>
-        </div>
-        <div class="iframe-container" id="iframe-tarot">
-          <iframe src="https://din-fortune-2026.neocities.org/tarot/" loading="lazy" title="塔羅占卜"></iframe>
+          <button class="vibe-btn-open" id="btn-tarot" onclick="toggleIframe('tarot')">在頁面內開啟</button>
         </div>
       </div>
+      <div class="vibe-copy">
+        <span class="vibe-copy-audience" style="color:#b48aff;background:rgba(180,138,255,0.1);border:1px solid rgba(180,138,255,0.25)">適合族群：身心靈 × 療癒師 × 命理師</span>
+        <div class="copy-arrow">→ 核心應用</div>
+        <div class="copy-value">專業內容產品化</div>
+        <div class="copy-desc">你的塔羅知識不該只活在一對一的諮詢現場。<br>做成互動工具，讓它 24 小時替你說話、替你篩選出真正有興趣的客戶。</div>
+        <div class="copy-who">
+          <strong>適合這些人用：</strong><br>
+          塔羅師、星座占卜師、身心靈工作者、療癒課程老師、想用神秘感增加品牌吸引力的創作者
+        </div>
+      </div>
+    </div>
+    <div class="iframe-fullwidth" id="iframe-tarot">
+      <iframe src="https://din-fortune-2026.neocities.org/tarot/" loading="lazy" title="塔羅占卜"></iframe>
+    </div>
 
-      <!-- 人類圖 -->
-      <div class="vibe-card" id="card-hd">
+    <!-- 工具 3：人類圖 -->
+    <div class="vibe-row">
+      <div class="vibe-card">
         <div class="vibe-card-header">
           <div class="vibe-card-icon">🌌</div>
+          <div class="card-sub">專業系統互動化 × 潛在客戶篩選</div>
           <h3>人類圖量子探測</h3>
-          <p>專業內容互動化<br>讓服務從被動變主動</p>
+          <p>輸入生日資訊，自動解析人類圖能量類型與核心特質，提供個人化的生命設計指引。讓複雜的系統變得親民易懂。</p>
         </div>
         <div class="vibe-card-actions">
-          <button class="vibe-btn-open" onclick="toggleIframe('hd')">在頁面內開啟</button>
+          <button class="vibe-btn-open" id="btn-hd" onclick="toggleIframe('hd')">在頁面內開啟</button>
         </div>
-        <div class="iframe-container" id="iframe-hd">
-          <iframe src="https://din-fortune-2026.neocities.org/human-design/" loading="lazy" title="人類圖量子探測"></iframe>
+      </div>
+      <div class="vibe-copy">
+        <span class="vibe-copy-audience" style="color:#a78bfa;background:rgba(167,139,250,0.1);border:1px solid rgba(167,139,250,0.25)">適合族群：人類圖師 × 靈性品牌 × 教練</span>
+        <div class="copy-arrow">→ 核心應用</div>
+        <div class="copy-value">讓服務從被動等待 → 主動吸引</div>
+        <div class="copy-desc">客戶在體驗工具的過程中，已經開始對你的服務產生信任。<br>當他想深入了解，他會主動來找你——而不是你追著他跑。</div>
+        <div class="copy-who">
+          <strong>適合這些人用：</strong><br>
+          人類圖解讀師、靈魂藍圖分析師、正能量教練、NLP從業者、任何「需要讓客戶先理解系統」的服務提供者
+        </div>
+      </div>
+    </div>
+    <div class="iframe-fullwidth" id="iframe-hd">
+      <iframe src="https://din-fortune-2026.neocities.org/human-design/" loading="lazy" title="人類圖量子探測"></iframe>
+    </div>
+
+    <!-- 外連工具 2欄 -->
+    <div class="vibe-ext-grid">
+      <div class="vibe-row" style="display:block">
+        <div class="vibe-card">
+          <div class="vibe-card-header">
+            <div class="vibe-card-icon">⏱️</div>
+            <div class="card-sub">個人效率系統化 × P人必備</div>
+            <h3>專注效率紀錄器</h3>
+            <p>記錄你每天的專注時段、任務完成狀況與能量分配，讓你看見自己真正的工作模式，建立屬於自己節奏的效率系統。</p>
+          </div>
+          <div class="vibe-card-actions">
+            <a class="vibe-btn-ext" href="https://gemini.google.com/share/f1064c62ae73" target="_blank">在新分頁開啟 ↗</a>
+          </div>
+        </div>
+        <div class="vibe-copy" style="margin-top:12px">
+          <span class="vibe-copy-audience" style="color:#5ce1e6;background:rgba(92,225,230,0.1);border:1px solid rgba(92,225,230,0.25)">適合族群：自由工作者 × ADHD × P人</span>
+          <div class="copy-arrow">→ 核心應用</div>
+          <div class="copy-value">把「感覺很忙」變成可以看見的數據</div>
+          <div class="copy-desc">效率不靠意志力，靠系統。適合用在課程教材、社群互動，或直接送給你的目標客群使用。</div>
+        </div>
+      </div>
+
+      <div class="vibe-row" style="display:block">
+        <div class="vibe-card">
+          <div class="vibe-card-header">
+            <div class="vibe-card-icon">📊</div>
+            <div class="card-sub">一人公司 × 經營視角建立</div>
+            <h3>公司記帳工具</h3>
+            <p>專為一人公司設計的簡易記帳與收支分析工具。不只記錄數字，更幫你建立「我在經營一間公司」的老闆思維與財務感知。</p>
+          </div>
+          <div class="vibe-card-actions">
+            <a class="vibe-btn-ext" href="https://gemini.google.com/share/94fc063ad26a" target="_blank">在新分頁開啟 ↗</a>
+          </div>
+        </div>
+        <div class="vibe-copy" style="margin-top:12px">
+          <span class="vibe-copy-audience" style="color:#7ddb8d;background:rgba(125,219,141,0.1);border:1px solid rgba(125,219,141,0.25)">適合族群：自由工作者 × 微型創業者</span>
+          <div class="copy-arrow">→ 核心應用</div>
+          <div class="copy-value">從「打工視角」切換到「經營視角」</div>
+          <div class="copy-desc">這個視角的轉換，比任何財務技巧都重要。決定你做的是工作，還是事業。</div>
         </div>
       </div>
     </div>
 
-    <div class="vibe-tools-grid-2">
-      <!-- 專注效率 -->
-      <div class="vibe-card">
-        <div class="vibe-card-header">
-          <div class="vibe-card-icon">⏱️</div>
-          <h3>專注效率紀錄器</h3>
-          <p>個人效率系統化（P人必備）<br>把自我管理變成可視化數據</p>
-        </div>
-        <div class="vibe-card-actions">
-          <a class="vibe-btn-ext" href="https://gemini.google.com/share/f1064c62ae73" target="_blank">在新分頁開啟 ↗</a>
-        </div>
-      </div>
-
-      <!-- 公司記帳 -->
-      <div class="vibe-card">
-        <div class="vibe-card-header">
-          <div class="vibe-card-icon">📊</div>
-          <h3>公司記帳工具</h3>
-          <p>一人公司經營視角<br>讓財務變得直觀，不再逃避</p>
-        </div>
-        <div class="vibe-card-actions">
-          <a class="vibe-btn-ext" href="https://gemini.google.com/share/94fc063ad26a" target="_blank">在新分頁開啟 ↗</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- POSITIONING COPY -->
-<section class="section positioning-section" id="positioning">
-  <div class="container">
-    <div class="section-header">
-      <span class="tag" style="margin-bottom:14px;display:inline-block">應用場景</span>
-      <h2>CosmoSeed AI｜這些不是工具，<br>是你<span class="glow-text">可以複製</span>的應用</h2>
-      <p>不同的職業背景，對應不同的切入點。你的在哪裡？</p>
-    </div>
-    <div class="pos-grid">
-      <div class="pos-card">
-        <span class="pos-card-tag" style="color:#ff8c42;background:rgba(255,140,66,0.1);border:1px solid rgba(255,140,66,0.25);border-radius:99px;padding:3px 12px;">業務 × 銷售</span>
-        <h3 style="margin-top:10px">財神爺卜卦</h3>
-        <div class="arrow">→</div>
-        <div class="value">破冰 + 信任建立</div>
-        <div class="scenario">客戶還沒信任你之前，給他一個有趣的理由先互動。卜卦完，你就不是「陌生的業務」了。</div>
-      </div>
-      <div class="pos-card">
-        <span class="pos-card-tag" style="color:#b48aff;background:rgba(180,138,255,0.1);border:1px solid rgba(180,138,255,0.25);border-radius:99px;padding:3px 12px;">療癒 × 命理</span>
-        <h3 style="margin-top:10px">塔羅 × 人類圖</h3>
-        <div class="arrow">→</div>
-        <div class="value">專業內容產品化</div>
-        <div class="scenario">你的知識不該只活在諮詢現場。做成互動工具，讓它 24 小時替你說話、替你篩客戶。</div>
-      </div>
-      <div class="pos-card">
-        <span class="pos-card-tag" style="color:#5ce1e6;background:rgba(92,225,230,0.1);border:1px solid rgba(92,225,230,0.25);border-radius:99px;padding:3px 12px;">個人效率 × P 人</span>
-        <h3 style="margin-top:10px">專注效率紀錄器</h3>
-        <div class="arrow">→</div>
-        <div class="value">自我管理系統化</div>
-        <div class="scenario">把「我今天好像很忙但沒做什麼」，變成可以看見、可以改善的數據。效率不靠意志力，靠系統。</div>
-      </div>
-      <div class="pos-card">
-        <span class="pos-card-tag" style="color:#7ddb8d;background:rgba(125,219,141,0.1);border:1px solid rgba(125,219,141,0.25);border-radius:99px;padding:3px 12px;">一人公司 × 創業者</span>
-        <h3 style="margin-top:10px">公司記帳工具</h3>
-        <div class="arrow">→</div>
-        <div class="value">經營視角建立</div>
-        <div class="scenario">不是在記帳，是在建立「我在經營一間公司」的感知。這個視角，決定你做的是工作還是事業。</div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -988,10 +1040,10 @@ footer {
           <div><div style="font-size:22px;margin-bottom:4px">🗺</div><div style="color:var(--accent2);font-size:12px;font-weight:700">完整藍圖</div></div>
         </div>
       </div>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-        <input type="email" id="blueprint-email" placeholder="你的 Email" style="padding:13px 18px;border:1.5px solid rgba(123,97,255,0.3);border-radius:99px;font-size:14px;font-family:inherit;outline:none;width:220px;background:rgba(255,255,255,0.05);color:var(--text)">
-        <button class="btn btn-purple" onclick="submitBlueprint()">免費領取藍圖 →</button>
-      </div>
+      <a href="https://lin.ee/ZEQhZDr" target="_blank" class="btn btn-purple" style="font-size:16px;padding:14px 36px">
+        加 LINE，免費領取品牌變現藍圖 →
+      </a>
+      <p style="font-size:13px;color:var(--muted);margin-top:12px">加入後傳「藍圖」兩個字，馬上送出</p>
     </div>
   </div>
 </section>
@@ -1014,10 +1066,10 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <p style="font-size:18px;font-weight:700;margin-bottom:4px;color:#fff">✦ CosmoSeed AI</p>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:16px">幫你從模糊 → 清晰 → 可變現</p>
+    <p style="font-size:18px;font-weight:700;margin-bottom:4px;color:#fff">✦ CosmoSeed <span style="color:var(--cta);text-shadow:0 0 14px rgba(255,45,149,0.9)">AI</span></p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:16px">每一個品牌，都是一顆等待發芽的種子</p>
     <div class="footer-social">
-      <a href="https://instagram.com/cosmoseed.ai" target="_blank">
+      <a href="https://www.instagram.com/din_din_wang/" target="_blank">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
         Instagram
       </a>
@@ -1033,7 +1085,7 @@ footer {
       <a href="#blueprint">品牌變現藍圖</a>
       <a href="#consulting">諮詢服務</a>
     </div>
-    <p style="margin-top:20px;font-size:12px;color:rgba(120,120,150,0.6)">© 2025 CosmoSeed AI</p>
+    <p style="margin-top:20px;font-size:12px;color:rgba(120,120,150,0.6)">© 2026 CosmoSeed AI</p>
   </div>
 </footer>
 
@@ -1071,23 +1123,25 @@ function copyText() {
   navigator.clipboard.writeText(text).then(() => showToast('✓ 已複製到剪貼板'));
 }
 
-// ── iframe toggle ──
+// ── iframe toggle（全寬展開）──
 function toggleIframe(id) {
   const container = document.getElementById('iframe-' + id);
   const isOpen = container.classList.contains('open');
-  // close all first
-  document.querySelectorAll('.iframe-container').forEach(c => c.classList.remove('open'));
+  // 關閉所有
+  document.querySelectorAll('.iframe-fullwidth').forEach(c => c.classList.remove('open'));
   document.querySelectorAll('.vibe-btn-open').forEach(b => b.textContent = '在頁面內開啟');
   if (!isOpen) {
     container.classList.add('open');
-    const btn = container.previousElementSibling.querySelector('.vibe-btn-open');
+    const btn = document.getElementById('btn-' + id);
     if (btn) btn.textContent = '收起 ↑';
     setTimeout(() => container.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
   }
 }
 
 // ── Generate Post (uses real story input) ──
+let postVariant = 0;
 function generatePost() {
+  postVariant++;
   const topic   = document.getElementById('topic').value.trim() || '你選擇的主題';
   const story   = document.getElementById('story').value.trim();
   const goalEl  = document.querySelector('#goal-group .radio-option.active input');
@@ -1103,7 +1157,7 @@ function generatePost() {
     btn.textContent = '✦ 生成貼文草稿';
     btn.disabled = false;
 
-    const post = buildPost(topic, story, goal, style);
+    const post = buildPost(topic, story, goal, style, postVariant);
     const outputArea = document.getElementById('output-area');
     document.getElementById('output-text').textContent = post;
     outputArea.classList.add('visible');
@@ -1112,7 +1166,8 @@ function generatePost() {
   }, 1200);
 }
 
-function buildPost(topic, story, goal, style) {
+function buildPost(topic, story, goal, style, variant) {
+  variant = variant || 0;
   const hasStory = story.length > 10;
 
   // Story hook: use actual story or generic
@@ -1154,7 +1209,16 @@ function buildPost(topic, story, goal, style) {
   const styleKey = { '療癒':'療癒', '實用':'實用', '故事':'故事', '知識':'知識' }[style] || '療癒';
   const goalKey  = { '共鳴':'共鳴', '學習':'學習', '追蹤':'追蹤', '購買':'購買' }[goal]  || '共鳴';
 
-  return (posts[styleKey] && posts[styleKey][goalKey]) || posts['療癒']['共鳴'];
+  const base = (posts[styleKey] && posts[styleKey][goalKey]) || posts['療癒']['共鳴'];
+  // 每次重試加一個不同的開場變體
+  const openers = [
+    '', // 原版
+    `先問你一個問題：關於「${topic}」，你最近一次認真想過是什麼時候？\n\n`,
+    `三件事，讓我對「${topic}」的看法完全改變。\n\n`,
+    `如果要用一句話說清楚「${topic}」，你會怎麼說？\n\n我想了很久……\n\n`,
+  ];
+  const opener = openers[variant % openers.length];
+  return opener ? opener + base : base;
 }
 
 // ── Email 名單收集（Formspree）+ 導向 LINE ──
