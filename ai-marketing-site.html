@@ -9,9 +9,11 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:         #1e1e38;
-  --bg2:        #262644;
+  --bg:         #2a2a4a;
+  --bg2:        #323260;
   --bg-card:    rgba(255,255,255,0.04);
+  --glass:      radial-gradient(ellipse at 50% 30%, rgba(0,0,0,0.28) 0%, rgba(255,255,255,0.04) 100%);
+  --glass-pur:  radial-gradient(ellipse at 50% 30%, rgba(0,0,0,0.32) 0%, rgba(123,97,255,0.07) 100%);
   --text:       #f0f0ff;
   --muted:      #7a7a9a;
   --border:     rgba(255,45,149,0.18);
@@ -52,7 +54,7 @@ a { text-decoration: none; }
 /* ── Nav ── */
 nav {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(28,28,52,0.92);
+  background: rgba(20,20,40,0.85);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid rgba(255,45,149,0.12);
   padding: 14px 24px;
@@ -135,11 +137,12 @@ nav {
 .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
 
 .hero-visual {
-  background: rgba(255,255,255,0.03);
+  background: var(--glass);
   border: 1px solid var(--border);
   border-radius: 20px; padding: 28px;
   font-size: 13px;
-  box-shadow: var(--glow-soft), inset 0 1px 0 rgba(255,255,255,0.05);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--glow-soft), inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.2);
 }
 .mockup-header {
   display: flex; align-items: center; gap: 8px;
@@ -174,11 +177,12 @@ nav {
 /* ── Tool Cards ── */
 .tools-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .tool-card {
-  background: var(--bg-card); border: 1px solid var(--border);
+  background: var(--glass); border: 1px solid var(--border);
   border-radius: var(--radius); padding: 24px;
   transition: all .25s; cursor: pointer;
   display: flex; flex-direction: column;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.15);
 }
 .tool-card:hover {
   border-color: var(--cta); box-shadow: var(--glow-soft);
@@ -197,9 +201,10 @@ nav {
 
 /* ── Tool Demo ── */
 .tool-demo-wrap {
-  background: rgba(255,255,255,0.02); border: 1px solid var(--border);
+  background: var(--glass); border: 1px solid var(--border);
   border-radius: 20px; overflow: hidden;
-  box-shadow: var(--glow-soft);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--glow-soft), inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.2);
 }
 .tool-demo-header {
   background: rgba(255,45,149,0.06); padding: 20px 28px;
@@ -289,8 +294,10 @@ nav {
 .vibe-row + .vibe-row { margin-top: 24px; }
 
 .vibe-card {
-  background: rgba(123,97,255,0.06); border: 1px solid rgba(123,97,255,0.2);
+  background: var(--glass-pur); border: 1px solid rgba(123,97,255,0.22);
   border-radius: var(--radius); overflow: hidden; transition: all .25s;
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.2);
 }
 .vibe-card:hover { border-color: var(--accent); box-shadow: var(--glow-pur); }
 .vibe-card-header { padding: 22px 22px 14px; }
@@ -317,8 +324,10 @@ nav {
 /* 工具定位說明（右欄）*/
 .vibe-copy {
   padding: 24px 28px;
-  background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06);
+  background: var(--glass); border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--radius);
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.15);
 }
 .vibe-copy-audience {
   display: inline-flex; align-items: center; gap: 6px;
@@ -399,8 +408,10 @@ nav {
 
 .cases-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
 .case-card {
-  background: var(--bg-card); border: 1px solid rgba(255,255,255,0.07);
+  background: var(--glass); border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--radius); padding: 22px; transition: all .2s;
+  backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.15);
 }
 .case-card:hover { border-color: var(--border); }
 .case-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--cta-light); border: 1px solid rgba(255,45,149,0.3); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 14px; }
