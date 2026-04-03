@@ -11,9 +11,9 @@
 :root {
   --bg:         #eae6f5;
   --bg2:        #dfd9f0;
-  --bg-card:    rgba(42,28,88,0.88);
-  --glass:      radial-gradient(ellipse at 50% 35%, rgba(38,24,82,0.92) 0%, rgba(58,42,108,0.82) 100%);
-  --glass-pur:  radial-gradient(ellipse at 50% 35%, rgba(32,18,75,0.94) 0%, rgba(55,38,110,0.84) 100%);
+  --bg-card:    rgb(42,28,88);
+  --glass:      radial-gradient(ellipse at 50% 35%, rgb(38,24,82) 0%, rgb(55,38,105) 100%);
+  --glass-pur:  radial-gradient(ellipse at 50% 35%, rgb(28,14,72) 0%, rgb(50,32,105) 100%);
   --text:       #1e1840;
   --muted:      #8880aa;
   --border:     rgba(180,120,255,0.35);
@@ -71,7 +71,7 @@ nav {
 .nav-logo .seed { color: var(--cta); text-shadow: 0 0 12px rgba(255,45,149,0.7); }
 .nav-logo .ai   { color: var(--cta); text-shadow: 0 0 14px rgba(255,45,149,0.9); }
 .nav-links { display: flex; gap: 28px; list-style: none; }
-.nav-links a { color: #6a5898; text-decoration: none; font-size: 14px; transition: color .2s; }
+.nav-links a { color: #c8bef0; text-decoration: none; font-size: 14px; transition: color .2s; }
 .nav-links a:hover { color: var(--cta); }
 .nav-cta {
   background: var(--cta); color: #fff;
@@ -141,7 +141,6 @@ nav {
   border: 1px solid var(--border);
   border-radius: 20px; padding: 28px;
   font-size: 13px;
-  backdrop-filter: blur(12px);
   box-shadow: var(--glow-soft), inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.2);
 }
 .mockup-header {
@@ -181,7 +180,6 @@ nav {
   border-radius: var(--radius); padding: 24px;
   transition: all .25s; cursor: pointer;
   display: flex; flex-direction: column;
-  backdrop-filter: blur(10px);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.15);
 }
 .tool-card:hover {
@@ -203,7 +201,6 @@ nav {
 .tool-demo-wrap {
   background: var(--glass); border: 1px solid var(--border);
   border-radius: 20px; overflow: hidden;
-  backdrop-filter: blur(12px);
   box-shadow: var(--glow-soft), inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.2);
 }
 .tool-demo-header {
@@ -296,7 +293,6 @@ nav {
 .vibe-card {
   background: var(--glass-pur); border: 1px solid rgba(123,97,255,0.22);
   border-radius: var(--radius); overflow: hidden; transition: all .25s;
-  backdrop-filter: blur(10px);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.2);
 }
 .vibe-card:hover { border-color: var(--accent); box-shadow: var(--glow-pur); }
@@ -326,7 +322,6 @@ nav {
   padding: 24px 28px;
   background: var(--glass); border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--radius);
-  backdrop-filter: blur(8px);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.15);
 }
 .vibe-copy-audience {
@@ -410,7 +405,6 @@ nav {
 .case-card {
   background: var(--glass); border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--radius); padding: 22px; transition: all .2s;
-  backdrop-filter: blur(8px);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.15);
 }
 .case-card:hover { border-color: var(--border); }
@@ -443,7 +437,7 @@ nav {
 .lm-content h2 { font-size: clamp(22px,3vw,30px); margin-bottom: 16px; }
 .lm-content p { color: #a0a0c0; font-size: 15px; line-height: 1.9; margin-bottom: 20px; }
 .lm-list { list-style: none; margin-bottom: 28px; }
-.lm-list li { font-size: 14px; color: #b0b0c8; padding: 6px 0; display: flex; align-items: flex-start; gap: 8px; }
+.lm-list li { font-size: 14px; color: #3a2e70; padding: 6px 0; display: flex; align-items: flex-start; gap: 8px; }
 .lm-list li::before { content: '✓'; color: var(--cta); font-weight: 700; flex-shrink: 0; }
 .lm-form { display: flex; gap: 10px; flex-wrap: wrap; }
 .lm-form input {
@@ -483,20 +477,20 @@ nav {
 
 /* ── Footer ── */
 footer {
-  border-top: 1px solid rgba(150,80,200,0.15);
-  padding: 40px 24px; background: #d8d2ec;
-  text-align: center; font-size: 13px; color: #6a5898;
+  border-top: 1px solid rgba(123,97,255,0.2);
+  padding: 40px 24px; background: #0e0830;
+  text-align: center; font-size: 13px; color: #9088c8;
 }
 .footer-social { display: flex; gap: 16px; justify-content: center; margin: 16px 0; }
 .footer-social a {
   display: flex; align-items: center; gap: 6px;
-  color: #6a5898; font-size: 13px; padding: 8px 18px;
-  border: 1px solid rgba(150,80,200,0.2); border-radius: 99px;
-  transition: all .2s; background: rgba(255,255,255,0.4);
+  color: #9088c8; font-size: 13px; padding: 8px 18px;
+  border: 1px solid rgba(150,100,255,0.2); border-radius: 99px;
+  transition: all .2s; background: rgba(255,255,255,0.05);
 }
 .footer-social a:hover { color: var(--cta); border-color: rgba(255,45,149,0.3); background: var(--cta-light); }
 .footer-links { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
-.footer-links a { color: var(--muted); font-size: 12px; transition: color .2s; }
+.footer-links a { color: #6a60a0; font-size: 12px; transition: color .2s; }
 .footer-links a:hover { color: var(--cta); }
 
 /* ── Toast ── */
@@ -535,6 +529,17 @@ footer {
   .tools-grid, .tools-grid-2, .cases-grid, .vibe-tools-grid, .vibe-tools-grid-2 { grid-template-columns: 1fr; }
   .bp-modules { grid-template-columns: 1fr; }
 }
+
+/* ── Dark Sections ── */
+#results { background: #1e1458; }
+#results .section-header h2 { color: #f0eeff; }
+#results .section-header p { color: #a098c8; }
+#about { background: #140c44; }
+#about h2 { color: #f0eeff; }
+#about .trust-text p { color: #c8c0e8; }
+#about .pillar { color: #b0a8d8; }
+#about .flow-item { color: #d0c8f0; }
+#about .trust-flow { background: rgba(123,97,255,0.1); border-color: rgba(123,97,255,0.25); }
 </style>
 </head>
 <body>
@@ -629,7 +634,7 @@ footer {
           你也可以做出跟自己行業相關的<strong style="color:#ffb870">互動小測驗</strong>——<br>
           例如：保險業的「你的風險保障夠嗎？」、房仲的「你的購屋時機測試」...<br>
           只要知道怎麼下 Prompt，隨時可以創造千變萬化的互動工具。<br>
-          <strong style="color:#ff8c42">輕鬆為品牌省下幾十萬的開發預算。</strong>
+          <strong style="color:#ff8c42;font-size:17px;display:block;margin-top:6px">輕鬆為品牌省下幾十萬的開發預算。</strong>
         </div>
       </div>
     </div>
@@ -662,7 +667,7 @@ footer {
         <div class="copy-who" style="margin-top:10px;border-color:rgba(180,138,255,0.2);background:rgba(180,138,255,0.05)">
           你的專業是什麼？<strong style="color:#c8a8ff">做成互動工具</strong>，讓它幫你全天候吸引客戶。<br>
           美容師的膚質測試、瑜珈老師的體式推薦、教練的自我檢測...<br>
-          <strong style="color:#b48aff">這些都不需要工程師，只需要你懂得怎麼描述它。</strong>
+          <strong style="color:#b48aff;font-size:17px;display:block;margin-top:6px">這些都不需要工程師，只需要你懂得怎麼描述它。</strong>
         </div>
       </div>
     </div>
@@ -694,7 +699,7 @@ footer {
         </div>
         <div class="copy-who" style="margin-top:10px;border-color:rgba(167,139,250,0.2);background:rgba(167,139,250,0.05)">
           不管你的系統有多複雜，<strong style="color:#c8b0ff">都可以被做成「讓人願意主動體驗」的工具。</strong><br>
-          這就是 Vibe Coding 的核心價值——把你的專業，變成 24 小時運作的獲客引擎。
+          <strong style="color:#c8b0ff;font-size:17px;display:block;margin-top:6px">把你的專業，變成 24 小時運作的獲客引擎。</strong>
         </div>
       </div>
     </div>
@@ -753,23 +758,23 @@ footer {
     <h2>你也可以做出<br><span class="glow-text">專屬品牌的工具</span></h2>
     <p>不需要是工程師，不需要龐大預算。<br>只需要你的應用場景 + 一句正確的 Prompt + 願意陪你走的引導者。<br><strong style="color:#e0e0ff">這正是 Vibe Coding 在做的事。</strong></p>
     <div style="margin:32px auto;max-width:520px;display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:left">
-      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:16px 20px;font-size:14px;color:#d0d0f0">
-        ✅ <strong style="color:#fff">省下幾十萬</strong>的開發預算
+      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:18px 22px;font-size:16px;color:#d0d0f0;font-weight:600">
+        ✅ <strong style="color:#fff;font-size:18px">省下幾十萬</strong>的開發預算
       </div>
-      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:16px 20px;font-size:14px;color:#d0d0f0">
-        ✅ <strong style="color:#fff">24 小時</strong>自動獲客
+      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:18px 22px;font-size:16px;color:#d0d0f0;font-weight:600">
+        ✅ <strong style="color:#fff;font-size:18px">24 小時</strong>自動獲客
       </div>
-      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:16px 20px;font-size:14px;color:#d0d0f0">
-        ✅ <strong style="color:#fff">任何行業</strong>都能複製
+      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:18px 22px;font-size:16px;color:#d0d0f0;font-weight:600">
+        ✅ <strong style="color:#fff;font-size:18px">任何行業</strong>都能複製
       </div>
-      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:16px 20px;font-size:14px;color:#d0d0f0">
-        ✅ <strong style="color:#fff">零基礎</strong>也能學會
+      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:18px 22px;font-size:16px;color:#d0d0f0;font-weight:600">
+        ✅ <strong style="color:#fff;font-size:18px">零基礎</strong>也能學會
       </div>
     </div>
     <a href="https://gemini.google.com/share/bff027b27f19" target="_blank" class="btn btn-primary" style="font-size:18px;padding:18px 48px;letter-spacing:0.04em">
       我也想學 Vibe Coding → 看課程
     </a>
-    <p style="margin-top:16px;font-size:13px;color:var(--muted)">不確定自己適合嗎？先<a href="https://lin.ee/ZEQhZDr" target="_blank" style="color:var(--cta)">加 LINE 聊聊</a>，免費</p>
+    <p style="margin-top:16px;font-size:13px;color:var(--muted)">不確定自己適合嗎？先<a href="https://lin.ee/ZEQhZDr" target="_blank" style="color:var(--cta)">加 LINE 聊聊</a></p>
   </div>
 </section>
 
