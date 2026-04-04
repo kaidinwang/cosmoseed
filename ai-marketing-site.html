@@ -12,8 +12,8 @@
   --bg:         #eae6f5;
   --bg2:        #dfd9f0;
   --bg-card:    rgb(42,28,88);
-  --glass:      radial-gradient(ellipse at 50% 35%, rgb(38,24,82) 0%, rgb(55,38,105) 100%);
-  --glass-pur:  radial-gradient(ellipse at 50% 35%, rgb(28,14,72) 0%, rgb(50,32,105) 100%);
+  --glass:      linear-gradient(145deg, rgb(62,40,118) 0%, rgb(32,16,72) 55%, rgb(18,8,52) 100%);
+  --glass-pur:  linear-gradient(145deg, rgb(48,26,102) 0%, rgb(24,10,64) 55%, rgb(14,4,48) 100%);
   --text:       #1e1840;
   --muted:      #8880aa;
   --border:     rgba(180,120,255,0.35);
@@ -141,7 +141,7 @@ nav {
   border: 1px solid var(--border);
   border-radius: 20px; padding: 28px;
   font-size: 13px;
-  box-shadow: var(--glow-soft), inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.2);
+  box-shadow: var(--glow-soft), 0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -2px 0 rgba(0,0,0,0.35);
 }
 .mockup-header {
   display: flex; align-items: center; gap: 8px;
@@ -180,11 +180,12 @@ nav {
   border-radius: var(--radius); padding: 24px;
   transition: all .25s; cursor: pointer;
   display: flex; flex-direction: column;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -2px 0 rgba(0,0,0,0.3);
 }
 .tool-card:hover {
-  border-color: var(--cta); box-shadow: var(--glow-soft);
-  transform: translateY(-3px); background: rgba(255,45,149,0.05);
+  border-color: var(--cta); box-shadow: var(--glow-soft), 0 8px 28px rgba(0,0,0,0.45);
+  transform: translateY(-3px);
+  background: linear-gradient(145deg, rgb(85,32,100) 0%, rgb(52,16,70) 55%, rgb(35,6,55) 100%);
 }
 .tool-icon { font-size: 28px; margin-bottom: 14px; }
 .tool-pain { font-size: 12px; color: #a898d8; margin-bottom: 8px; font-style: italic; }
@@ -201,7 +202,7 @@ nav {
 .tool-demo-wrap {
   background: var(--glass); border: 1px solid var(--border);
   border-radius: 20px; overflow: hidden;
-  box-shadow: var(--glow-soft), inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.2);
+  box-shadow: var(--glow-soft), 0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -2px 0 rgba(0,0,0,0.3);
 }
 .tool-demo-header {
   background: rgba(255,45,149,0.06); padding: 20px 28px;
@@ -286,17 +287,18 @@ nav {
 /* 每個工具：卡片 + 說明文案 並排 */
 .vibe-row {
   display: grid; grid-template-columns: 1fr 1.3fr; gap: 24px;
-  margin-bottom: 12px; align-items: start;
+  margin-bottom: 12px; align-items: stretch;
 }
 .vibe-row + .vibe-row { margin-top: 24px; }
 
 .vibe-card {
   background: var(--glass-pur); border: 1px solid rgba(123,97,255,0.22);
   border-radius: var(--radius); overflow: hidden; transition: all .25s;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -2px 0 rgba(0,0,0,0.3);
+  display: flex; flex-direction: column;
 }
-.vibe-card:hover { border-color: var(--accent); box-shadow: var(--glow-pur); }
-.vibe-card-header { padding: 22px 22px 14px; }
+.vibe-card:hover { border-color: var(--accent); box-shadow: var(--glow-pur), 0 8px 28px rgba(0,0,0,0.4); }
+.vibe-card-header { padding: 22px 22px 14px; flex: 1; }
 .vibe-card-icon { font-size: 32px; margin-bottom: 12px; }
 .vibe-card h3 { font-size: 18px; margin-bottom: 8px; color: #f0eeff; font-weight: 600; }
 .vibe-card .card-sub { font-size: 13px; color: var(--accent2); font-weight: 600; margin-bottom: 8px; letter-spacing: 0.05em; }
@@ -322,7 +324,7 @@ nav {
   padding: 24px 28px;
   background: var(--glass); border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--radius);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -2px 0 rgba(0,0,0,0.28);
 }
 .vibe-copy-audience {
   display: inline-flex; align-items: center; gap: 6px;
@@ -383,7 +385,7 @@ nav {
 .step-flow { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
 .step-pill {
   background: rgba(255,45,149,0.1); border: 1px solid rgba(255,45,149,0.25);
-  color: #e0e0f0; padding: 10px 20px; border-radius: 99px; font-size: 14px; font-weight: 500;
+  color: #2a1870; padding: 10px 20px; border-radius: 99px; font-size: 14px; font-weight: 600;
 }
 .step-arrow { color: var(--cta); font-size: 20px; }
 
@@ -405,7 +407,7 @@ nav {
 .case-card {
   background: var(--glass); border: 1px solid rgba(255,255,255,0.08);
   border-radius: var(--radius); padding: 22px; transition: all .2s;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.15);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -2px 0 rgba(0,0,0,0.3);
 }
 .case-card:hover { border-color: var(--border); }
 .case-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--cta-light); border: 1px solid rgba(255,45,149,0.3); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 14px; }
@@ -456,8 +458,9 @@ nav {
 .lm-mockup-icon { font-size: 56px; margin-bottom: 16px; }
 .lm-mockup-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; color: #fff; }
 .lm-mockup-sub { font-size: 13px; color: var(--muted); margin-bottom: 20px; line-height: 1.6; }
-.lm-mockup-list { text-align: left; font-size: 13px; color: #a0a0c0; }
-.lm-mockup-list li { padding: 5px 0; list-style: none; display: flex; gap: 8px; }
+.lm-mockup-list { text-align: center; font-size: 14px; color: #c8bef0; }
+.lm-mockup-list li { padding: 7px 0; list-style: none; display: flex; gap: 8px; justify-content: center; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.lm-mockup-list li:last-child { border: none; }
 .lm-mockup-list li::before { content: '📌'; font-size: 12px; }
 
 /* ── Blueprint ── */
@@ -567,7 +570,7 @@ footer {
           <span class="tag">AI × 個人品牌 × 變現</span>
           <span class="tag tag-purple">Vibe Coding</span>
         </div>
-        <h1>你的內容，值得被看見、<span class="glow-text">被喜歡、被買單</span>。</h1>
+        <h1>你的內容，值得被看見、<br><span class="glow-text">被喜歡、被買單</span>。</h1>
         <p class="hero-sub">AI 不會取代你——但它能幫你把腦袋裡的想法，<br>變成真正能打動人心、帶來收入的工具與內容。</p>
         <p class="hero-sub2">專為個人品牌 × 身心靈創作者 × 自媒體經營者設計的 AI 工具組</p>
         <div class="hero-btns">
@@ -605,7 +608,7 @@ footer {
     <div class="section-header">
       <span class="tag tag-purple" style="margin-bottom:14px;display:inline-block">Vibe Coding Lab｜獲客變現工具</span>
       <h2>不需懂任何程式碼，只要出一張嘴<br>你也可以做出<span class="glow-text-pur">屬於自己的獲客工具</span></h2>
-      <p>這些工具都是我用 AI Vibe Coding 做出來的。<br>這些不是工具，是你可以直接複製的應用場景——<strong style="color:#e0e0ff">只要經過學習，人人都可以自己做出來。</strong></p>
+      <p style="color:#2a1c60">這些工具都是我用 AI Vibe Coding 做出來的。<br>這些不是工具，是你可以直接複製的應用場景——<strong style="color:#fff;background:rgba(123,97,255,0.4);padding:2px 8px;border-radius:4px">只要經過學習，人人都可以自己做出來。</strong></p>
     </div>
 
     <!-- 工具 1：財神爺卜卦 -->
@@ -758,17 +761,17 @@ footer {
     <h2>你也可以做出<br><span class="glow-text">專屬品牌的工具</span></h2>
     <p>不需要是工程師，不需要龐大預算。<br>只需要你的應用場景 + 一句正確的 Prompt + 願意陪你走的引導者。<br><strong style="color:#e0e0ff">這正是 Vibe Coding 在做的事。</strong></p>
     <div style="margin:32px auto;max-width:520px;display:grid;grid-template-columns:1fr 1fr;gap:12px;text-align:left">
-      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:18px 22px;font-size:16px;color:#d0d0f0;font-weight:600">
-        ✅ <strong style="color:#fff;font-size:18px">省下幾十萬</strong>的開發預算
+      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.25);border-radius:12px;padding:18px 22px;font-size:16px;color:#1e1260;font-weight:600">
+        ✅ <strong style="color:var(--cta);font-size:18px">省下幾十萬</strong>的開發預算
       </div>
-      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:18px 22px;font-size:16px;color:#d0d0f0;font-weight:600">
-        ✅ <strong style="color:#fff;font-size:18px">24 小時</strong>自動獲客
+      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.25);border-radius:12px;padding:18px 22px;font-size:16px;color:#1e1260;font-weight:600">
+        ✅ <strong style="color:var(--cta);font-size:18px">24 小時</strong>自動獲客
       </div>
-      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:18px 22px;font-size:16px;color:#d0d0f0;font-weight:600">
-        ✅ <strong style="color:#fff;font-size:18px">任何行業</strong>都能複製
+      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.25);border-radius:12px;padding:18px 22px;font-size:16px;color:#1e1260;font-weight:600">
+        ✅ <strong style="color:var(--cta);font-size:18px">任何行業</strong>都能複製
       </div>
-      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:18px 22px;font-size:16px;color:#d0d0f0;font-weight:600">
-        ✅ <strong style="color:#fff;font-size:18px">零基礎</strong>也能學會
+      <div style="background:rgba(255,45,149,0.08);border:1px solid rgba(255,45,149,0.25);border-radius:12px;padding:18px 22px;font-size:16px;color:#1e1260;font-weight:600">
+        ✅ <strong style="color:var(--cta);font-size:18px">零基礎</strong>也能學會
       </div>
     </div>
     <a href="https://gemini.google.com/share/bff027b27f19" target="_blank" class="btn btn-primary" style="font-size:18px;padding:18px 48px;letter-spacing:0.04em">
@@ -1034,7 +1037,12 @@ footer {
           <input type="email" id="email-input" placeholder="你的 Email">
           <button class="btn btn-primary" onclick="submitEmail()">立即下載 →</button>
         </div>
-        <p style="font-size:12px;color:var(--muted);margin-top:10px">✓ 完全免費　✓ 點擊即下載　✓ 不會亂寄廣告信</p>
+        <p style="font-size:12px;color:var(--muted);margin-top:10px">✓ 完全免費　✓ 填 Email 即可下載　✓ 不會亂寄廣告信</p>
+        <div id="download-area" style="display:none;margin-top:16px;padding:18px 22px;background:rgba(123,97,255,0.12);border:1px solid rgba(123,97,255,0.3);border-radius:12px">
+          <p style="font-size:14px;color:#f0eeff;margin-bottom:12px;font-weight:600">✓ 謝謝你！Prompt 包已準備好 👇</p>
+          <a href="#" id="download-btn" class="btn btn-purple" target="_blank" style="display:inline-block;font-size:15px;padding:12px 28px" onclick="handleDownload(event)">📦 立即下載 Prompt 系統包</a>
+          <p style="font-size:12px;color:#8880aa;margin-top:10px">同時，加 LINE 取得個人化建議 → <a href="https://lin.ee/ZEQhZDr" target="_blank" style="color:var(--cta)">加 LINE</a></p>
+        </div>
       </div>
       <div class="lm-visual">
         <div class="lm-mockup-icon">📦</div>
@@ -1048,48 +1056,84 @@ footer {
         </ul>
         <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.08)">
           <div style="font-size:12px;color:var(--muted);margin-bottom:8px">想要進階版？</div>
-          <a href="#blueprint" style="font-size:13px;color:var(--cta);font-weight:700">查看品牌變現藍圖 →</a>
+          <a href="#blueprint" style="font-size:16px;color:var(--cta);font-weight:700">查看品牌變現藍圖 →</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BLUEPRINT + CONSULTING (合併) -->
-<section class="section" id="blueprint" style="background:var(--bg2)">
+<!-- BLUEPRINT -->
+<section class="section" id="blueprint" style="background:#2a1870">
   <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center">
+    <div style="text-align:center;margin-bottom:52px">
+      <span class="tag tag-purple" style="margin-bottom:16px;display:inline-block">進階資源</span>
+      <h2 style="font-size:clamp(24px,3.5vw,36px);color:#f0eeff;margin-bottom:16px">你缺的不是更多內容，<br>而是讓內容<span class="glow-text-pur">變現的結構</span></h2>
+      <p style="color:#9088c8;font-size:15px;max-width:560px;margin:0 auto;line-height:1.9">很多人做了很久的內容，卻發現追蹤者很多但沒人買單。<br>問題不是你不夠努力——是你缺少一張地圖。</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start">
+      <!-- 左：模組 -->
       <div>
-        <span class="tag tag-purple" style="margin-bottom:16px;display:inline-block">進階資源</span>
-        <h2 style="font-size:clamp(22px,3vw,30px);margin-bottom:16px">你缺的不是更多內容，<br>而是讓內容<span class="glow-text-pur">變現的結構</span></h2>
-        <p style="color:#a0a0c0;font-size:15px;line-height:1.9;margin-bottom:24px">很多人做了很久的內容，卻發現追蹤者很多但沒人買單。問題不是你不夠努力——是你缺少一張地圖。</p>
-        <div class="bp-modules" style="margin-bottom:24px">
+        <p style="font-size:13px;font-weight:700;color:var(--accent2);letter-spacing:0.1em;margin-bottom:20px">藍圖包含 5 個模組</p>
+        <div class="bp-modules" style="margin-bottom:28px">
           <div class="bp-mod"><div class="bp-mod-num">模組 01</div><div class="bp-mod-title">定位釐清</div><div class="bp-mod-sub">你在幫誰解決什麼</div></div>
           <div class="bp-mod"><div class="bp-mod-num">模組 02</div><div class="bp-mod-title">信任建立路徑</div><div class="bp-mod-sub">陌生人如何信任你</div></div>
           <div class="bp-mod"><div class="bp-mod-num">模組 03</div><div class="bp-mod-title">變現產品結構</div><div class="bp-mod-sub">免費→低價→高價</div></div>
           <div class="bp-mod"><div class="bp-mod-num">模組 04</div><div class="bp-mod-title">內容策略地圖</div><div class="bp-mod-sub">每篇都有任務</div></div>
           <div class="bp-mod"><div class="bp-mod-num">模組 05</div><div class="bp-mod-title">顧問轉換設計</div><div class="bp-mod-sub">追蹤→私訊→成交</div></div>
-          <div class="bp-mod" style="background:rgba(123,97,255,0.1);border-color:rgba(123,97,255,0.2);display:flex;align-items:center;justify-content:center;text-align:center">
+          <div class="bp-mod" style="background:rgba(123,97,255,0.15);border-color:rgba(123,97,255,0.3);display:flex;align-items:center;justify-content:center;text-align:center">
             <div><div style="font-size:22px;margin-bottom:4px">🗺</div><div style="color:var(--accent2);font-size:12px;font-weight:700">完整藍圖</div></div>
           </div>
         </div>
-        <a href="https://lin.ee/ZEQhZDr" target="_blank" class="btn btn-purple">
+        <a href="https://lin.ee/ZEQhZDr" target="_blank" class="btn btn-purple" style="font-size:16px;padding:16px 32px">
           加 LINE，免費領取品牌變現藍圖 →
         </a>
-        <p style="font-size:13px;color:var(--muted);margin-top:12px">加入後傳「藍圖」兩個字，馬上送出</p>
+        <p style="font-size:13px;color:#6860a0;margin-top:12px">加入後傳「藍圖」兩個字，馬上送出</p>
       </div>
-      <div style="background:linear-gradient(135deg,rgba(255,45,149,0.08),rgba(123,97,255,0.08));border:1px solid rgba(255,45,149,0.2);border-radius:20px;padding:36px;text-align:center">
-        <span class="tag" style="margin-bottom:20px;display:inline-block">LINE 諮詢</span>
-        <h3 style="font-size:24px;margin-bottom:16px;font-weight:600">如果你需要有人<br>陪你整合全局</h3>
-        <p style="color:#a0a0c0;font-size:14px;line-height:1.9;margin-bottom:28px">用過工具、看過 Prompt 包，卻還是覺得少一塊？加 LINE 聊聊你的品牌，免費，無壓力。</p>
-        <a href="https://lin.ee/ZEQhZDr" target="_blank" class="btn btn-primary" style="width:100%;text-align:center;display:block;font-size:16px;padding:16px">
-          加 LINE 諮詢 →
-        </a>
-        <div style="margin-top:20px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08)">
-          <p style="font-size:13px;color:var(--muted);margin-bottom:16px">或是直接去看課程：</p>
-          <a href="https://gemini.google.com/share/bff027b27f19" target="_blank" class="btn btn-purple" style="width:100%;text-align:center;display:block;font-size:15px;padding:14px">
-            學 Vibe Coding → 看課程
-          </a>
+
+      <!-- 右：有地圖 vs 沒地圖 + 怎麼開始 -->
+      <div>
+        <p style="font-size:13px;font-weight:700;color:var(--accent2);letter-spacing:0.1em;margin-bottom:20px">有地圖 vs 沒有地圖</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px">
+          <div style="background:rgba(255,100,100,0.07);border:1px solid rgba(255,100,100,0.2);border-radius:12px;padding:18px">
+            <p style="font-size:11px;font-weight:700;color:#c47a7a;letter-spacing:0.1em;margin-bottom:12px">❌ 沒有藍圖</p>
+            <ul style="list-style:none;font-size:13px;color:#a098c8;line-height:1.9">
+              <li>每週花 5+ 小時想發什麼</li>
+              <li>追蹤者多，買單的少</li>
+              <li>不知道下一步是什麼</li>
+              <li>靠運氣接案，收入不穩</li>
+            </ul>
+          </div>
+          <div style="background:rgba(123,97,255,0.1);border:1px solid rgba(123,97,255,0.3);border-radius:12px;padding:18px">
+            <p style="font-size:11px;font-weight:700;color:var(--accent2);letter-spacing:0.1em;margin-bottom:12px">✦ 有了藍圖</p>
+            <ul style="list-style:none;font-size:13px;color:#d0c8f0;line-height:1.9">
+              <li>每篇內容都有任務</li>
+              <li>內容帶來詢問，不靠關係</li>
+              <li>清楚知道哪個環節要優化</li>
+              <li>建立可預期的收入結構</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="background:rgba(255,45,149,0.07);border:1px solid rgba(255,45,149,0.2);border-radius:12px;padding:20px;margin-bottom:20px">
+          <p style="font-size:13px;font-weight:700;color:var(--cta);margin-bottom:14px">✦ 三步驟，從現在開始</p>
+          <div style="font-size:14px;color:#c8bef0;line-height:2">
+            <div style="margin-bottom:8px"><span style="color:var(--cta);font-weight:700">Step 1</span>　搞清楚你要幫誰、解決什麼問題</div>
+            <div style="margin-bottom:8px"><span style="color:var(--cta);font-weight:700">Step 2</span>　設計你的免費 → 低價 → 高價路徑</div>
+            <div><span style="color:var(--cta);font-weight:700">Step 3</span>　讓每篇貼文推進這條路徑</div>
+          </div>
+        </div>
+
+        <div style="display:flex;gap:12px">
+          <div style="flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px;text-align:center">
+            <div style="font-size:26px;font-weight:700;color:var(--cta);text-shadow:0 0 16px rgba(255,45,149,0.4)">省 60%</div>
+            <div style="font-size:12px;color:#8880aa;margin-top:4px">內容策略思考時間</div>
+          </div>
+          <div style="flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:16px;text-align:center">
+            <div style="font-size:26px;font-weight:700;color:var(--accent2);text-shadow:0 0 16px rgba(123,97,255,0.4)">8 週</div>
+            <div style="font-size:12px;color:#8880aa;margin-top:4px">從「無人問津」到「開始詢問」</div>
+          </div>
         </div>
       </div>
     </div>
@@ -1275,9 +1319,19 @@ function buildPost(topic, story, goal, style, variant) {
   return opener ? opener + base : base;
 }
 
-// ── Email 名單收集（Formspree）+ 導向 LINE ──
-// 步驟：到 https://formspree.io 免費註冊 → New Form → 複製 Form ID 填入下方
+// ── Email 名單收集（Formspree）+ 下載連結 ──
+// 步驟 1：到 https://formspree.io 免費註冊 → New Form → 複製 Form ID 填入下方
 const FORMSPREE_ID = 'YOUR_FORMSPREE_ID';
+// 步驟 2：把 Prompt 包上傳到 Google Drive / Dropbox 取得分享連結，填入下方
+const PROMPT_PACK_URL = '';  // ← 填入你的 Prompt 包下載連結
+
+function handleDownload(e) {
+  if (!PROMPT_PACK_URL) {
+    e.preventDefault();
+    showToast('📦 加 LINE 傳「Prompt包」領取');
+    setTimeout(() => window.open('https://lin.ee/ZEQhZDr', '_blank'), 800);
+  }
+}
 
 async function submitEmail() {
   const emailEl = document.getElementById('email-input');
@@ -1296,9 +1350,18 @@ async function submitEmail() {
   if (btn) { btn.textContent = '立即下載 →'; btn.disabled = false; }
 
   emailEl.value = '';
-  emailEl.placeholder = '已記錄！加 LINE 領取 ✓';
-  showToast('✓ 加 LINE 傳「Prompt包」，馬上送你 📦');
-  setTimeout(() => window.open('https://lin.ee/ZEQhZDr', '_blank'), 1200);
+  emailEl.placeholder = '✓ 已收到！';
+
+  // Show download area
+  const dlArea = document.getElementById('download-area');
+  if (dlArea) {
+    dlArea.style.display = 'block';
+    if (PROMPT_PACK_URL) document.getElementById('download-btn').href = PROMPT_PACK_URL;
+    dlArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  showToast('✓ 成功！請點下方按鈕下載 📦');
+  setTimeout(() => window.open('https://lin.ee/ZEQhZDr', '_blank'), 2000);
 }
 
 async function submitBlueprint() {
